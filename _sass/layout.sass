@@ -5,12 +5,32 @@ body
   margin: 0
   box-sizing: border-box
   -webkit-text-size-adjust: 100%
+  background-image: url("/blog/assets/images/straw.jpg")
+  background-repeat: repeat
+  background-size: 420px
+
+body > header
+  background: rgba(15, 23, 42, 0.9) !important    // deep navy
+  backdrop-filter: blur(24px) !important
+  border-bottom: 1px solid rgba(100, 116, 139, 0.5) !important
+  padding: 1.4em 3em !important
+
 
 body > header, body > footer
   display: flex
   flex-wrap: wrap
   justify-content: space-between
   align-items: center
+  padding: 1.2em 2.5em
+  background-color: #FFFFFF
+  border-bottom: 1px solid #EEEEEE
+  background-color: #FAF8F5
+  color: #2C2C2C
+
+  body > header
+  background-color: #FAF8F5
+  border-bottom: 1px solid #E8E0D5
+  padding: 1.2em 2.5em
 
 header a, footer a
   display: inline-block
@@ -19,12 +39,17 @@ footer a
   margin: .75em 0
 
 nav
-  margin: .5em -1.3em
+  margin: 0
   a
     margin: 0 1.3em
+    font-weight: 500
+    color: #111111
+    &:hover
+      color: #555555
   svg
     font-size: 1.1em
     vertical-align: sub
+
 
 main nav
   font-size: 1.1em
@@ -32,11 +57,12 @@ main nav
   div
     margin: .5em 0
 
+header h1, nav a
+  color: #E2E8F0 !important    // soft moon white
+  font-weight: 600 !important
+
 header h1
-  font-size: 1.75em
-  margin: 0
-  body > &
-    font-size: 1.35em
+  font-size: 1.35em !important
 
 article, main
   flex-grow: 1
