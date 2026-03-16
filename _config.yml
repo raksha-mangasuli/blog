@@ -1,6 +1,9 @@
-title: "Blog Title"
-author: "Blog Author"
-description: "My blog"
+title: "Blog"
+author: "Raksha Mangasuli"
+description: "Blog to pen down my thoughts about Tech, hobbies and more"
+baseurl: "/blog"         
+url: "https://raksha-mangasuli.github.io" 
+
 permalink: /:title/
 lang: "en"
 excerpt_separator: "\n\n\n"
