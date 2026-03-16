@@ -1,4 +1,4 @@
-title: "Blog"
+title: "Just a Blog to write about what I do"
 author: "Raksha Mangasuli"
 description: "Blog to pen down my thoughts about Tech, hobbies and more"
 baseurl: "/blog"         
@@ -22,12 +22,14 @@ show_minimal: false             # remove all clutter
 
 navigation:                     # accepts {file, title, url, icon, sidebaricon}
   - {file: "archive.html", sidebaricon: home}
-  - {file: "README.md", sidebaricon: address-card}
+  - {title: "General", url: "/general/", icon: globe}
+  - {title: "Tech", url: "/tech/", icon: laptop}
+  - {title: "Hobbies", url: "/hobbies/", icon: heart}
+  - {title: "Template", url: "/template/", icon: file}
+  
 
 external:                       # accepts {file, title, url, icon, sidebaricon}
-  - {title: Mail, icon: envelope, url: "mailto:author@example.com"}
-  - {title: Github, icon: github, url: "https://github.com/niklasbuschmann/contrast"}
-  - {title: Subscribe, icon: rss, url: "/feed.xml"}
+  - {title: Subscribe, icon: rss, url: "#"}
 
 comments:
 #  disqus_shortname: ""         # see https://disqus.com
@@ -35,3 +37,14 @@ comments:
 
 plugins:
  - jekyll-feed
+ - jekyll-paginate
+
+paginate: 5
+paginate_path: "/page:num/"
+
+include: ["_pages"]
+
+sass:
+  quiet_deps: true
+  silence_deprecations: ['import', 'global-builtin', 'slash-div']
+

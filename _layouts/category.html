@@ -1,0 +1,12 @@
+---
+layout: default
+---
+<h1>{{ page.title }}</h1>
+<ul>
+  {% for post in site.categories[page.category] %}
+    <li>
+      <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+      <span> — {{ post.date | date: site.date_format }}</span>
+    </li>
+  {% endfor %}
+</ul>
