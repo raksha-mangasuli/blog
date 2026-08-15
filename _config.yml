@@ -25,8 +25,7 @@ navigation:                     # accepts {file, title, url, icon, sidebaricon}
   - {title: "General", url: "/general/", icon: globe}
   - {title: "Tech", url: "/tech/", icon: laptop}
   - {title: "Hobbies", url: "/hobbies/", icon: heart}
-  - {title: "Template", url: "/template/", icon: file}
-  
+
 
 external:                       # accepts {file, title, url, icon, sidebaricon}
   - {title: Subscribe, icon: rss, url: "#"}
