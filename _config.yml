@@ -43,6 +43,14 @@ paginate_path: "/page:num/"
 
 include: ["_pages"]
 
+defaults:
+  - scope:
+      path: "_posts"
+      type: "posts"
+    values:
+      layout: post
+      categories: General
+
 sass:
   quiet_deps: true
   silence_deprecations: ['import', 'global-builtin', 'slash-div']

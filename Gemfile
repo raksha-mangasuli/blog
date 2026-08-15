@@ -7,4 +7,5 @@ gem 'jekyll-paginate'
 
 group :jekyll_plugins do
   gem "jekyll-feed", "~> 0.17"
+  gem "jekyll-admin", "~> 0.12"
 end
