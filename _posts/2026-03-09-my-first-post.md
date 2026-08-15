@@ -10,7 +10,7 @@ Day 1: 9 Mar 2026
 
 Yesterday night I decided to start blogging my whole portfolio creation process. Let's see how this goes! I'm really excited and looking forward to this <3 
 
-
+<!--more-->
 
 Initially it was all about just using AI tools after having heard a lot about Claude, Vibe coding and other LLMs' capabilities to create websites with ease. 
 But being a developer and Claude having a limit on the usage, I coudln't help but start making my portfolio site using a proper combination of HTML, CSS, Javascript.  
