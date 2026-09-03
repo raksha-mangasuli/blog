@@ -2,8 +2,20 @@
 layout: default
 ---
 
-<article>
-  {% include meta.html post=page %}
+<article class="post">
+  <a class="post-back" href="{{ '/' | relative_url }}">&larr; All posts</a>
+  <header class="post-head">
+    {%- comment -%} the _config defaults MERGE "General" into every post's categories, so prefer a more specific one for the label {%- endcomment -%}
+    {%- assign real_cats = page.categories | where_exp: "c", "c != 'General'" -%}
+    <span class="post-kicker">{{ real_cats | first | default: 'General' }}</span>
+    <h1>{{ page.title }}</h1>
+    <div class="post-meta">
+      {%- assign date_format = site.date_format | default: "%B %-d, %Y" -%}
+      {% if page.date %}<time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: date_format }}</time>{% endif %}
+      <span class="dot">&middot;</span>
+      <span>{{ content | number_of_words | divided_by: 200 | plus: 1 }} min read</span>
+    </div>
+  </header>
   {{ content }}
   {% if site.comments.isso_domain or site.comments.disqus_shortname %}
     <hr>
@@ -15,9 +27,9 @@ layout: default
 
 {% unless site.show_minimal or site.footer  %}
 {% if page.next.url or page.previous.url %}
-<footer class="nowrap {% if site.show_frame %}dark{% else %}smooth{% endif %}">
-  {% if page.next.url %}<a href="{{ page.next.url | relative_url }}">« {{ page.next.title }}</a> {% endif %}
-  {% if page.previous.url %} <a href="{{ page.previous.url | relative_url }}">{{ page.previous.title }} »</a>{% endif %}
+<footer class="post-nav {% if site.show_frame %}dark{% else %}smooth{% endif %}">
+  {% if page.previous.url %}<a class="pn-older" href="{{ page.previous.url | relative_url }}"><span>Older</span>&laquo; {{ page.previous.title }}</a>{% endif %}
+  {% if page.next.url %}<a class="pn-newer" href="{{ page.next.url | relative_url }}"><span>Newer</span>{{ page.next.title }} &raquo;</a>{% endif %}
 </footer>
 {% endif %}
 {% endunless %}

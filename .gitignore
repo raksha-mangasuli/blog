@@ -6,3 +6,7 @@ Gemfile.lock
 _site
 *.gem
 .obsidian/
+
+# Claude Design scratch (canvas working files + seeded artifact payload)
+.design-src/
+blog-post-page-redesign.html

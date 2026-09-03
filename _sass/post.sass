@@ -1,0 +1,148 @@
+// ============================================================
+//  Single post page — wide, calm reading surface
+//  Signals "you opened the full post" vs. the homepage list:
+//    1. surface widens  ~680px -> ~1060px
+//    2. constellation background is suppressed (calm)
+//    3. card chrome dissolves (subtle border, gentle radius)
+//  Text stays ~780px wide and every block shares one left edge.
+// ============================================================
+
+// 1 — calm backdrop, only on post pages (.post exists there only)
+.post::before
+  content: ""
+  position: fixed
+  inset: 0
+  background: #e7ecf5
+  z-index: -1
+
+// 2 — the wide surface (overrides the narrow `article` + `body > *` rules)
+body > .post
+  max-width: 1060px !important
+  margin: 1.6em auto 0 !important
+  padding: 2.4em 0 2.6em !important
+  background: #ffffff !important
+  border: 1px solid #e2e8f0 !important
+  border-radius: 14px !important
+  box-shadow: 0 14px 44px -24px rgba(15, 23, 42, 0.30) !important
+
+// 3 — ONE reading measure for every direct child, centred in the panel
+.post > *
+  max-width: 780px
+  margin-left: auto !important
+  margin-right: auto !important
+  padding-left: 1.6em
+  padding-right: 1.6em
+  box-sizing: border-box
+
+.post img
+  border-radius: 6px
+  margin: .6em auto 1.4em
+
+// --- header block --------------------------------------------
+//  three tiers only:
+//   · back-link + meta  — Poppins 0.85em, same size, muted
+//   · kicker chip        — Poppins 0.7em, the one uppercase label
+//   · title              — Playfair 2em (the site heading font)
+
+// utility nav — deliberately quiet, blue only on hover
+.post > .post-back
+  display: block
+  font-size: .82em
+  font-weight: 500
+  color: #64748b !important
+  margin-bottom: 1.6em
+
+.post > .post-back:hover
+  color: #2563eb !important
+
+.post > .post-head
+  margin-bottom: 1.4em
+  padding-bottom: 1.4em
+  border-bottom: 1px solid #e8edf4
+
+// first paragraph sits close under the divider
+.post > .post-head + p
+  margin-top: 0
+
+// category — a muted label, not a bright badge
+.post-kicker
+  display: inline-block
+  font-size: .72em
+  font-weight: 600
+  letter-spacing: .12em
+  text-transform: uppercase
+  color: #64748b !important
+  background: #f1f5f9
+  padding: .4em .8em
+  border-radius: 9999px
+
+// title + meta are centred; the category tag stays left
+.post-head h1
+  text-align: center
+  font-size: 2.3em
+  line-height: 1.22
+  font-weight: 700 !important
+  color: #0f172a !important
+  margin: .5em 0 0
+
+.post-meta
+  display: flex
+  flex-wrap: wrap
+  align-items: baseline
+  justify-content: center
+  gap: .5em
+  margin-top: .7em
+  font-size: .85em
+  font-weight: 400 !important
+  color: #64748b !important
+
+  time
+    color: #64748b !important
+    font-weight: 400 !important
+
+  .dot
+    color: #cbd5e1
+
+// --- body copy -----------------------------------------------
+.post > p,
+.post > ul,
+.post > ol
+  font-size: 1.06em
+  line-height: 1.8
+
+// --- prev / next footer -------------------------------------
+body > footer.post-nav
+  max-width: 1060px !important
+  margin: 1.1em auto 3em !important
+  padding: 1.2em 1.6em 0 !important
+  background: transparent !important
+  border: 0 !important
+  display: flex
+  justify-content: space-between
+  gap: 1em
+
+  a
+    display: flex
+    flex-direction: column
+    font-weight: 600
+    color: #0f172a !important
+
+  .pn-newer
+    text-align: right
+    margin-left: auto
+
+  span
+    font-size: .7em
+    font-weight: 700
+    letter-spacing: .1em
+    text-transform: uppercase
+    color: #94a3b8 !important
+
+// --- smaller screens: surface goes full-width edge to edge
+@media (max-width: 1120px)
+  body > .post
+    max-width: none !important
+    margin: 0 !important
+    border-radius: 0 !important
+    border-left: 0 !important
+    border-right: 0 !important

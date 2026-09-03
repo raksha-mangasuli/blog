@@ -7,7 +7,7 @@ title: "Home"
   {% for post in paginator.posts %}
     <article>
       {% include meta.html post=post %}
-      {{ post.excerpt }}
+      <p>{{ post.content | strip_html | normalize_whitespace | truncatewords: 50 }}</p>
       <footer class="button"><a href="{{ post.url | relative_url }}">read more</a></footer>
     </article>
   {% endfor %}
