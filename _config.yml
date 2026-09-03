@@ -6,6 +6,7 @@ url: "https://raksha-mangasuli.github.io"
 
 permalink: /:title/
 lang: "en"
+future: true   # publish posts even if their timestamp is ahead of the build clock (GitHub builds in UTC)
 excerpt_separator: "<!--more-->"
 date_format: "%B %d, %Y"
 
