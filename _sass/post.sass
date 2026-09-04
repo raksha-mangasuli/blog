@@ -110,6 +110,17 @@ body > .post
   font-size: 1.06em
   line-height: 1.8
 
+// lists share the same left edge as paragraphs.
+// `.post > *` already applies padding-left: 1.6em; markers `outside` would hang
+// left of that shared edge, so pull them back inline with `inside`.
+.post > ul,
+.post > ol
+  list-style-position: inside
+
+.post > ul li,
+.post > ol li
+  margin: .5em 0
+
 // --- prev / next footer -------------------------------------
 body > footer.post-nav
   max-width: 1060px !important

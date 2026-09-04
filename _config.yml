@@ -54,6 +54,7 @@ defaults:
 
 markdown: kramdown
 kramdown:
+  input: GFM        # GitHub-flavored: auto-links bare URLs, keeps ``` fences etc.
   hard_wrap: true   # treat every single newline as a line break, so posts render the way they're typed in Obsidian
 
 sass:

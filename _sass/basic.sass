@@ -115,6 +115,20 @@ a
   &:hover
     color: #555555
 
+// inline links in post body / lists: calm blue, gentle underline.
+// !important + 3-element selector is needed to beat `article * { color: … !important }` below.
+article p a, article li a
+  color: #2563eb !important
+  font-weight: 400
+  text-decoration: underline
+  text-decoration-color: rgba(37, 99, 235, .4)
+  text-underline-offset: 3px
+  text-decoration-thickness: 1px
+  transition: color .2s, text-decoration-color .2s
+  &:hover
+    color: #1d4ed8 !important
+    text-decoration-color: currentColor
+
 article
   max-width: 650px !important    
   margin: 1.2em auto !important  

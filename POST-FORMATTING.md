@@ -35,9 +35,20 @@ Here are the GitHub links of the projects I really liked:
 
 ## Links
 
-- Bare URL on its own line: fine, it auto-links.
-- Nicer: `[grill-me skill](https://github.com/mattpocock/skills)` renders as a
-  clickable **grill-me skill**.
+**A bare URL does NOT become a link here.** kramdown (this site's Markdown engine)
+only linkifies URLs that are written one of these two ways:
+
+| Write | Renders as |
+| --- | --- |
+| `<https://github.com/foo/bar>` | the URL, clickable |
+| `[nice text](https://github.com/foo/bar)` | **nice text**, clickable |
+
+Angle brackets are the quick option; `[text](url)` when you want readable link
+text. Writing just `https://github.com/foo/bar` leaves it as plain grey text.
+
+Styling and behaviour are automatic once a link is real: post-body links show up
+blue and underlined, and any link pointing to another site opens in a new tab
+(links to your own blog stay in the same tab). You don't add anything for that.
 
 ## Images
 
