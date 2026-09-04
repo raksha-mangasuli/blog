@@ -27,6 +27,10 @@ This is Raksha's personal blog, a Jekyll site hosted on GitHub Pages at raksha-m
 - Do not use an LLM to write or modify actual blog post content/copy, Raksha writes these herself. Claude Code's role here is the tooling and site configuration around the blog, not the posts themselves.
 - Never invent post content, dates, or details.
 
+## Post formatting
+
+- Markdown line-break behavior trips Raksha up (single newlines collapse into one paragraph, lists need `1.` + a blank line before them, `text-align: justify` in `_sass/basic.sass` exaggerates the result). Full cheat sheet is in `POST-FORMATTING.md` at the repo root. Point her there when a post renders with run-together lines or stretched spacing.
+
 ## Workflow notes
 
 - Test changes locally (bundle exec jekyll serve) and check the actual rendered output before considering a fix complete, don't assume a config change worked without visually confirming it.
