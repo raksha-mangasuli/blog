@@ -29,7 +29,8 @@ This is Raksha's personal blog, a Jekyll site hosted on GitHub Pages at raksha-m
 
 ## Post formatting
 
-- Markdown line-break behavior trips Raksha up (single newlines collapse into one paragraph, lists need `1.` + a blank line before them, `text-align: justify` in `_sass/basic.sass` exaggerates the result). Full cheat sheet is in `POST-FORMATTING.md` at the repo root. Point her there when a post renders with run-together lines or stretched spacing.
+- `_config.yml` sets `kramdown: hard_wrap: true` so single newlines render as line breaks, matching how Raksha writes in Obsidian. If posts start rendering with run-together lines, check that setting is still present and that the Jekyll server was restarted after any config change.
+- Lists still need `1.` (with the dot) and a blank line before the first item. Full cheat sheet is in `POST-FORMATTING.md` at the repo root.
 
 ## Workflow notes
 

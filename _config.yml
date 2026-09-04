@@ -52,6 +52,10 @@ defaults:
       layout: post
       categories: General
 
+markdown: kramdown
+kramdown:
+  hard_wrap: true   # treat every single newline as a line break, so posts render the way they're typed in Obsidian
+
 sass:
   quiet_deps: true
   silence_deprecations: ['import', 'global-builtin', 'slash-div']
