@@ -23,10 +23,12 @@
 {%- endif -%}
 
 <script>
-  // Links in post content that point off-site open in a new tab, so the reader
-  // keeps their place in the post. Internal links (same host) stay in-page.
-  document.querySelectorAll('article a[href^="http"]').forEach(function (a) {
-    if (a.host !== location.host) {
+  // Links in post content that point off-site, or to a PDF, open in a new tab so
+  // the reader keeps their place in the post. Other internal links stay in-page.
+  document.querySelectorAll('article a[href]').forEach(function (a) {
+    var offSite = /^https?:/i.test(a.protocol) && a.host !== location.host;
+    var isPdf = /\.pdf(\?|#|$)/i.test(a.getAttribute('href') || '');
+    if (offSite || isPdf) {
       a.target = '_blank';
       a.rel = 'noopener noreferrer';
     }

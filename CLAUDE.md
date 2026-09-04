@@ -34,6 +34,13 @@ This is Raksha's personal blog, a Jekyll site hosted on GitHub Pages at raksha-m
 - Bare URLs do NOT auto-link (kramdown, even with GFM input, doesn't linkify naked URLs). Write `<https://...>` or `[text](https://...)`.
 - Full cheat sheet is in `POST-FORMATTING.md` at the repo root.
 
+## Assets (images, PDFs)
+
+- Everything goes in the top-level `assets/images/` folder, referenced as `{{ "/assets/images/NAME" | relative_url }}`. Nothing under `_posts/` — Jekyll skips `_`-prefixed folders, so it 404s live despite working locally.
+- `.githooks/pre-commit` blocks asset files staged under `_posts/`. Enable per clone: `git config core.hooksPath .githooks`.
+- Use lowercase-hyphenated filenames, no spaces or accents.
+- PDFs: link them (`[text](url)`), never `![]()`. Off-site links and `.pdf` links open in a new tab via the script in `_layouts/default.html`.
+
 ## Workflow notes
 
 - Test changes locally (bundle exec jekyll serve) and check the actual rendered output before considering a fix complete, don't assume a config change worked without visually confirming it.

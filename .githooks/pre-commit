@@ -1,0 +1,25 @@
+#!/bin/sh
+# Guard: images / PDFs / other assets must NOT live under _posts/.
+#
+# Jekyll never publishes anything inside a folder whose name starts with "_",
+# so a file committed under _posts/assets/ (or anywhere else in _posts/) will
+# 404 on the live blog even though it works locally. Assets belong in the
+# top-level assets/images/ folder, referenced as:
+#
+#     {{ "/assets/images/NAME" | relative_url }}
+#
+# Install once:  git config core.hooksPath .githooks
+
+staged=$(git diff --cached --name-only --diff-filter=AM)
+
+bad=$(printf '%s\n' "$staged" | grep -Ei '^_posts/.*\.(png|jpe?g|gif|svg|webp|heic|pdf|mp4|mov|zip)$')
+if [ -n "$bad" ]; then
+  echo "pre-commit: asset files are staged under _posts/ — move them to assets/images/:"
+  printf '%s\n' "$bad" | sed 's/^/    /'
+  echo
+  echo "Then reference them as:  {{ \"/assets/images/NAME\" | relative_url }}"
+  echo "(bypass with --no-verify only if you are sure)"
+  exit 1
+fi
+
+exit 0

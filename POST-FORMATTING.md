@@ -50,6 +50,17 @@ Styling and behaviour are automatic once a link is real: post-body links show up
 blue and underlined, and any link pointing to another site opens in a new tab
 (links to your own blog stay in the same tab). You don't add anything for that.
 
+## Where images and PDFs live
+
+**All assets go in the top-level `assets/images/` folder.** Never put them under
+`_posts/` — Jekyll ignores any folder starting with `_`, so a file in
+`_posts/assets/` works locally but 404s on the live blog. A git pre-commit hook
+(`.githooks/pre-commit`) blocks the mistake; enable it once per clone with
+`git config core.hooksPath .githooks`.
+
+Use plain filenames: lowercase, hyphens, no spaces or accented characters
+(`lightning-demos.pdf`, not `Lightning demos · Night.pdf`).
+
 ## Images
 
 Keep doing what the existing posts do:
@@ -59,6 +70,17 @@ Keep doing what the existing posts do:
 ```
 
 A blank line after the image tag gives the following text a bit of breathing room.
+
+## PDFs (and other file downloads)
+
+Link to them, don't try to embed with `![]()`:
+
+```
+[Lightning demos (PDF)]({{ "/assets/images/lightning-demos.pdf" | relative_url }})
+```
+
+PDF links open in a new tab automatically (same script that handles off-site
+links), so the reader keeps their place in the post.
 
 ## Other things worth knowing
 
