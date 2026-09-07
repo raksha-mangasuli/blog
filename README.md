@@ -1,87 +1,58 @@
----
-title: "About"
-permalink: "/about/"
-layout: page
----
+# blog
 
-## Github Pages
+Raksha's personal blog — a Jekyll site hosted on GitHub Pages at [raksha-mangasuli.github.io/blog](https://raksha-mangasuli.github.io/blog/), interconnected with the [portfolio site](https://raksha-mangasuli.github.io/raksha-portfolio/). Posts cover Tech, Hobbies, and General topics.
 
-Just fork this [repository](https://github.com/niklasbuschmann/contrast) to `your_username.github.io` and adjust the `_config.yml` to use with [Github Pages](https://pages.github.com/) and your page is done.
+Built on the [type-on-strap](https://github.com/niklasbuschmann/contrast) Jekyll theme.
 
-## Features
+## Tech stack
 
- - dark mode
- - [KaTeX](https://katex.org) included
- - no external ressources
- - optional sidebar
- - archive page
- - syntax highlighting
- - supports comments via [disqus](https://disqus.com/) or [isso](http://posativ.org/isso/)
+- Jekyll (Ruby)
+- [jekyll-admin](https://github.com/jekyll/jekyll-admin) — local admin UI for writing/editing posts
+- jekyll-feed, jekyll-paginate
+- Deployed via GitHub Pages
 
-## Installation
+## Local development
 
-To run locally [install Ruby](https://www.ruby-lang.org/en/documentation/installation/) and then run:
+Install [Ruby](https://www.ruby-lang.org/en/documentation/installation/) and Bundler, then:
 
 ```
-git clone https://github.com/niklasbuschmann/contrast.git
-cd contrast
-gem install bundler jekyll jekyll-feed
+bundle install
 bundle exec jekyll serve
 ```
 
-## Config
+The site runs at `http://localhost:4000/blog/`.
 
-Your `_config.yml` could for example look like this:
+### Writing posts
 
-```yaml
-title: "Blog Title"
-author: "Blog Author"
-description: "My blog"
-permalink: /:title/
-lang: "en"
-excerpt_separator: "\n\n\n"
-date_format: "%B %d, %Y"
+Posts are drafted locally through the jekyll-admin UI at `http://localhost:4000/admin`, then committed and pushed as usual. A few things to know before using it:
 
-# Layout
+- The "New metadata field" UI in jekyll-admin is buggy — it can write a literal `Key:`/`Value:` pair instead of proper YAML. Always double-check a new post's raw front matter before committing.
+- Creating a post can throw a 500 error after clicking Create — this is a known jekyll-admin bug, not a real failure. Check `_posts/` and refresh the admin post list rather than assuming the post wasn't saved.
+- `_config.yml` applies `layout: post` and `categories: General` to everything in `_posts` by default. Only set `categories` manually if a post isn't General.
 
-show_excerpts: true             # show article excerpts instead of archive list on the home page
-show_frame: true                # display a grey frame on large screens
-show_sidebar: false             # show a sidebar instead of the usual header
-show_minimal: false             # remove all clutter
+See [POST-FORMATTING.md](POST-FORMATTING.md) for the full formatting cheat sheet (line breaks, lists, links, etc.).
 
-# Menu                          # for available icons see https://fontawesome.com/v5/icons/
+### Writing in Obsidian
 
-navigation:                     # accepts {file, title, url, icon, sidebaricon}
-  - {file: "archive.html", sidebaricon: home}
-  - {file: "README.md", sidebaricon: address-card}
+Posts are drafted in Obsidian, with the vault root pointed at `_posts/`. `_config.yml` sets `kramdown: hard_wrap: true` specifically so single newlines render as line breaks, matching how Obsidian writes paragraphs — if posts start rendering with run-together lines, check that setting is still there and restart the Jekyll server.
 
-external:                       # accepts {file, title, url, icon, sidebaricon}
-  - {title: Mail, icon: envelope, url: "mailto:author@example.com"}
-  - {title: Github, icon: github, url: "https://github.com/"}
-  - {title: Subscribe, icon: rss, url: "/feed.xml"}
+Images pasted in Obsidian need a manual fix before they'll publish, since Obsidian and Jekyll disagree on paths:
 
-comments:
-#  disqus_shortname: ""         # see https://disqus.com
-#  isso_domain: ""              # see https://isso-comments.de
+1. Obsidian saves the image to `_posts/assets/images/` — Jekyll skips `_`-prefixed folders, so it never gets published.
+2. Obsidian writes the embed as `![](assets/images/NAME.ext)`, a vault-relative path that won't resolve on the built site.
 
-plugins:
- - jekyll-feed
-```
+Fix for each new image: move it to `assets/images/NAME.ext` at the repo root, then rewrite the embed to `{{ "/assets/images/NAME" | relative_url }}` per the Assets section below.
 
-## Math
+### Assets (images, PDFs)
 
-Contrast comes preinstalled with a leightweight alternative to MathJax called [KaTeX](https://katex.org/). To display equations in a post simply set `mathjax: true` in the article's front matter. [Jektex](https://github.com/yagarea/jektex) can be used to pre-render math on the server side.
+All images and PDFs go in `assets/images/`, referenced as `{{ "/assets/images/NAME" | relative_url }}`. Nothing goes under `_posts/` — Jekyll skips `_`-prefixed folders, so it 404s live even though it works locally.
+
+Run `git config core.hooksPath .githooks` once per clone — a pre-commit hook blocks asset files accidentally staged under `_posts/`.
+
+## Restarting after config changes
+
+Jekyll only reads `_config.yml` at startup, so restart `jekyll serve` after any config change — it won't auto-regenerate on its own.
 
 ## License
 
-[public domain](http://unlicense.org/)
-
-## Screenshots
-
-![screenshot](https://github.com/user-attachments/assets/8f0ef4bc-f079-495e-8c31-5867b8ccd25c)
-
-![screenshot](https://github.com/user-attachments/assets/e5e6d189-3251-41f4-baba-ff42be65f666)
-
-![screenshot](https://github.com/user-attachments/assets/d31879ae-7113-42be-b580-1e96a2aedd29)
-
-![screenshot](https://github.com/user-attachments/assets/d524ce47-8d8c-473e-afc6-79b34fae63e8)
+[Public domain](UNLICENSE.txt), inherited from the original [type-on-strap](https://github.com/niklasbuschmann/contrast) theme.
