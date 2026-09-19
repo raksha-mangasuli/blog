@@ -5,6 +5,9 @@
 <meta name="author" content="{{ page.author | default: site.author | escape }}">
 <meta name="generator" content="Jekyll v{{ jekyll.version }}">
 <link rel="canonical" href="{{ page.url | absolute_url }}">
+<link rel="icon" href="{{ "/assets/images/favicon.ico" | relative_url }}" sizes="32x32">
+<link rel="icon" href="{{ "/assets/images/favicon.svg" | relative_url }}" type="image/svg+xml">
+<link rel="apple-touch-icon" href="{{ "/assets/images/apple-touch-icon.png" | relative_url }}">
 {%- if site.show_minimal -%}
 <link rel="stylesheet" href="{{ "/assets/css/minimal.css" | relative_url }}">
 {%- elsif site.show_frame -%}
