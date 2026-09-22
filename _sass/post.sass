@@ -17,7 +17,7 @@
 
 // 2 — the wide surface (overrides the narrow `article` + `body > *` rules)
 body > .post
-  max-width: 1060px !important
+  max-width: 840px !important
   margin: 1.6em auto 0 !important
   padding: 2.4em 0 2.6em !important
   background: #ffffff !important
@@ -109,6 +109,7 @@ body > .post
 .post > ol
   font-size: 1.06em
   line-height: 1.8
+  color: #333333 !important
 
 // lists share the same left edge as paragraphs.
 // `.post > *` already applies padding-left: 1.6em; markers `outside` would hang
@@ -123,7 +124,7 @@ body > .post
 
 // --- prev / next footer -------------------------------------
 body > footer.post-nav
-  max-width: 1060px !important
+  max-width: 840px !important
   margin: 1.1em auto 3em !important
   padding: 1.2em 1.6em 0 !important
   background: transparent !important
@@ -150,7 +151,7 @@ body > footer.post-nav
     color: #94a3b8 !important
 
 // --- smaller screens: surface goes full-width edge to edge
-@media (max-width: 1120px)
+@media (max-width: 900px)
   body > .post
     max-width: none !important
     margin: 0 !important
