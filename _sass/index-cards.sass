@@ -1,0 +1,246 @@
+// ============================================================
+//  Blog index — featured row (page 1 only) + small-card grid
+// ============================================================
+
+// overrides the generic `body > * { padding: ...; box-shadow: ... }` rule
+// in assets/css/index.sass, same approach body > .post already uses
+body > .index-featured, body > .index-grid, body > .pager
+  padding-left: 1.6em !important
+  padding-right: 1.6em !important
+  padding-top: 0 !important
+  padding-bottom: 0 !important
+  box-shadow: none !important
+  min-width: 0 !important
+  width: 100%
+
+.index-featured
+  display: grid
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr)
+  align-items: stretch
+  gap: 1.5rem
+  margin: 1.6em auto
+  max-width: 1060px
+  padding-top: 0
+  padding-bottom: 0
+  box-sizing: border-box
+
+.index-grid
+  display: grid
+  grid-template-columns: repeat(3, minmax(0, 1fr))
+  align-items: stretch
+  gap: 1.5rem
+  margin: 1.6em auto
+  max-width: 1060px
+  padding-top: 0
+  padding-bottom: 0
+  box-sizing: border-box
+
+// --- card --------------------------------------------------
+// max-width/margin !important below neutralize the generic `article` rule
+// in basic.sass (max-width: 650px, margin: 1.2em auto), which otherwise
+// makes these cards shrink-to-fit and self-center instead of filling
+// their grid track
+.card
+  position: relative
+  display: flex
+  flex-direction: column
+  box-sizing: border-box
+  width: 100%
+  max-width: none !important
+  margin: 0 !important
+  padding: 14px !important
+  background: #FDFEFE
+  border-radius: 16px
+  box-shadow: 0 10px 30px -18px rgba(15, 23, 42, 0.35)
+  overflow: hidden
+
+.card-media
+  position: relative
+  aspect-ratio: 16 / 9
+  background: #D6E5FC
+  border-radius: 10px
+  overflow: hidden
+
+  img
+    width: 100%
+    height: 100%
+    object-fit: cover
+    object-position: center
+    display: block
+    margin: 0
+    border-radius: 0
+
+  &::after
+    content: ""
+    position: absolute
+    inset: 0
+    border-radius: inherit
+    box-shadow: inset 0 0 0 1px rgba(30, 41, 59, 0.14)
+    pointer-events: none
+
+.card-media--empty
+  width: 100%
+  height: 100%
+  background: #D6E5FC
+
+.card--small .card-media
+  aspect-ratio: 3 / 2
+  border-radius: 8px
+
+.card-body
+  padding: 12px 2px 2px
+
+  time
+    display: block
+    font-family: var(--font-body)
+    font-weight: 600
+    color: #1E293B
+
+  h2
+    margin: .3em 0 0
+    font-weight: normal
+    line-height: 1.25
+
+    a
+      font-family: var(--font-display)
+      font-weight: 600
+      color: #1E293B
+      text-decoration: none
+      position: static
+
+      &::after
+        content: ""
+        position: absolute
+        inset: 0
+        z-index: 1
+
+.card:hover .card-body h2 a
+  text-decoration: underline
+  text-decoration-thickness: 2px
+  text-decoration-color: #93C5FD
+  text-underline-offset: 3px
+
+.card--featured .card-body time
+  font-size: .9rem
+
+.card--featured .card-body h2 a
+  font-size: 1.3rem
+
+.card--small .card-body time
+  font-size: .9rem
+
+.card--small .card-body h2 a
+  font-size: 1.2rem
+
+.card-excerpt
+  margin: .5em 0 0
+  font-family: var(--font-body)
+  font-weight: 400
+  font-size: .95rem
+  line-height: 1.55
+  color: #334155
+  text-align: left
+  display: -webkit-box
+  -webkit-line-clamp: 3
+  -webkit-box-orient: vertical
+  overflow: hidden
+
+// --- pagination ---------------------------------------------
+// .page-num / .pager-link set color with !important because these
+// links sit inside a <nav>, and layout.sass's `nav a { color: #E2E8F0
+// !important }` (meant for the dark site header) would otherwise win
+// and wash the text out. Scoped to these two classes only, so header
+// and other nav links are unaffected.
+.pager
+  display: flex
+  flex-wrap: wrap
+  align-items: center
+  justify-content: center
+  gap: 10px
+  max-width: 1060px
+  margin: 1em auto 2.5em
+  padding: 0 1.6em
+  box-sizing: border-box
+  font-family: var(--font-body)
+
+.page-num
+  display: inline-flex
+  align-items: center
+  justify-content: center
+  width: 38px
+  height: 38px
+  border-radius: 9999px
+  font-weight: 600 !important
+  font-size: 15px
+  color: #1E293B !important
+  background: #FDFEFE
+  border: none
+  text-decoration: none
+
+  &:hover
+    background: #D6E5FC
+
+  &:focus-visible
+    outline: 2px solid #1E40AF
+    outline-offset: 2px
+
+.page-num.active
+  background: #1F283B
+  color: #fff !important
+
+.pager-link
+  display: inline-flex
+  align-items: center
+  height: 38px
+  padding: 0 20px
+  border-radius: 9999px
+  font-weight: 600 !important
+  font-size: 15px
+  color: #1E293B !important
+  background: #FDFEFE
+  border: none
+  text-decoration: none
+
+  &:hover
+    background: #D6E5FC
+
+  &:focus-visible
+    outline: 2px solid #1E40AF
+    outline-offset: 2px
+
+@media (max-width: 640px)
+  .page-num
+    width: 40px
+    height: 40px
+
+// --- responsive -----------------------------------------------
+@media (max-width: 900px)
+  .index-grid
+    grid-template-columns: repeat(2, minmax(0, 1fr))
+
+@media (max-width: 640px)
+  .card
+    padding: 12px !important
+
+  .index-featured
+    grid-template-columns: minmax(0, 1fr)
+
+  .index-grid
+    grid-template-columns: minmax(0, 1fr)
+
+  .card--small
+    flex-direction: row
+    align-items: center
+    gap: .8em
+
+    .card-media
+      width: 88px
+      height: 88px
+      aspect-ratio: 1 / 1
+      flex-shrink: 0
+      border-radius: 10px
+
+    .card-body
+      flex: 1
+      min-width: 0
+      padding: 0

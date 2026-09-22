@@ -4,9 +4,6 @@ body
   background: light(100, 16)
   color: light(6, 100)
 
-p
-  text-align: justify
-
 a
   color: $link
   transition: .25s
@@ -79,7 +76,7 @@ header time, nav time
   color: gray(100)
 
   *
-  font-family: "Poppins", sans-serif
+  font-family: var(--font-body)
   box-sizing: border-box
 
 body
@@ -92,17 +89,17 @@ h1, h2, h3
   color: #111111
 
 h1, h2, h3, article h2
-  font-family: "Playfair Display", serif
+  font-family: var(--font-display)
   font-weight: 700
 
 nav, body, p, a
-  font-family: "Poppins", sans-serif
+  font-family: var(--font-body)
 
-// a linked post title (homepage list, archives) keeps the Playfair
-// heading font instead of the Poppins from the `a` rule above.
-// Scoped to `article` so the site masthead <h1><a> stays Poppins.
+// a linked post title (homepage list, archives) keeps the display
+// heading font instead of the body font from the `a` rule above.
+// Scoped to `article` so the site masthead <h1><a> stays on the body font.
 article h1 a, article h2 a, article h3 a
-  font-family: "Playfair Display", serif
+  font-family: var(--font-display)
 
 
 p
@@ -158,9 +155,6 @@ article time
 article time, article h2
   color: #1E293B !important      // dark slate
   font-weight: 700 !important
-
-article .post-title
-  color: #0F172A !important      // almost black
 
 article p, article li
   color: #334155 !important      // dark steel

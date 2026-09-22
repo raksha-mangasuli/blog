@@ -1,0 +1,44 @@
+{%- assign date_format = site.date_format | default: "%B %d, %Y" -%}
+{%- comment -%}
+  Thumbnail source, in order: the image: front matter override, then the
+  first <img> found in the rendered post body, then the plain tile.
+  image: false forces the plain tile even if the body has images.
+  post.content is already fully rendered by the time we see it here (its
+  own {{ "..." | relative_url }} tags have already run), so a src pulled
+  from the body is used as-is, not passed through relative_url again.
+{%- endcomment -%}
+{%- assign card_image = nil -%}
+{%- if include.post.image -%}
+  {%- assign card_image = include.post.image | relative_url -%}
+{%- elsif include.post.image != false -%}
+  {%- assign img_split = include.post.content | split: '<img ' -%}
+  {%- if img_split.size > 1 -%}
+    {%- assign src_split = img_split[1] | split: 'src="' -%}
+    {%- if src_split.size > 1 -%}
+      {%- assign card_image = src_split[1] | split: '"' | first -%}
+    {%- endif -%}
+  {%- endif -%}
+{%- endif -%}
+{%- assign img_position = "center" -%}
+{%- case include.post.image_position -%}
+  {%- when "top" -%}
+    {%- assign img_position = "top" -%}
+  {%- when "bottom" -%}
+    {%- assign img_position = "bottom" -%}
+{%- endcase -%}
+<article class="card card--{{ include.variant }}">
+  <div class="card-media">
+    {% if card_image %}
+      <img src="{{ card_image }}" alt="" loading="lazy" style="object-position: {{ img_position }};">
+    {% else %}
+      <div class="card-media--empty"></div>
+    {% endif %}
+  </div>
+  <div class="card-body">
+    {% if include.post.date %}<time datetime="{{ include.post.date | date_to_xmlschema }}">{{ include.post.date | date: date_format }}</time>{% endif %}
+    <h2><a href="{{ include.post.url | relative_url }}">{{ include.post.title }}</a></h2>
+    {% if include.variant == "featured" %}
+      <p class="card-excerpt">{{ include.post.content | strip_html | normalize_whitespace | truncatewords: 50 }}</p>
+    {% endif %}
+  </div>
+</article>
