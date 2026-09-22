@@ -1,4 +1,4 @@
-title: "Just a Blog to write about what I do"
+title: "Timestamped Thoughts"
 author: "Raksha Mangasuli"
 description: "Blog to pen down my thoughts about Tech, hobbies and more"
 baseurl: "/blog"         
@@ -22,14 +22,13 @@ show_minimal: false             # remove all clutter
 # Menu                          # for available icons see https://fontawesome.com/v5/icons/
 
 navigation:                     # accepts {file, title, url, icon, sidebaricon}
-  - {file: "archive.html", sidebaricon: home}
-  - {title: "General", url: "/general/", icon: globe}
-  - {title: "Tech", url: "/tech/", icon: laptop}
-  - {title: "Hobbies", url: "/hobbies/", icon: heart}
+  - {title: "General", url: "/general/", icon: compass}
+  - {title: "Tech", url: "/tech/", icon: laptop-code}
+  - {title: "Hobbies", url: "/hobbies/", icon: bicycle}
+  - {file: "archive.html", icon: archive, sidebaricon: home}
 
 
 external:                       # accepts {file, title, url, icon, sidebaricon}
-  - {title: Subscribe, icon: rss, url: "#"}
 
 comments:
 #  disqus_shortname: ""         # see https://disqus.com

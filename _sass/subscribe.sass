@@ -1,0 +1,120 @@
+// --- inline subscribe form (landing page only) -------------------
+// Horizontal banner: icon + copy on the left, form on the right.
+// Stacks vertically on narrow screens.
+.subscribe-inline
+  display: flex
+  align-items: center
+  justify-content: space-between
+  gap: 1.6em
+  max-width: 940px
+  margin: 2em auto 1em
+  padding: 1.1em 1.6em
+  background-color: #3B5240
+  background-image: radial-gradient(rgba(255, 255, 255, 0.14) 1px, transparent 1px)
+  background-size: 14px 14px
+  border-radius: 16px
+  text-align: left
+
+.subscribe-copy
+  display: flex
+  align-items: center
+  gap: .8em
+  flex: 1 1 auto
+  min-width: 0
+
+  .subscribe-icon
+    width: 2em
+    height: 2em
+    flex-shrink: 0
+    display: flex
+    align-items: center
+    justify-content: center
+    border-radius: 50%
+    background: rgba(255, 255, 255, 0.14)
+    color: #f7f2e7
+    overflow: hidden
+
+    svg
+      display: block
+      width: 16px
+      height: 16px
+
+  .subscribe-text
+    min-width: 0
+
+    h2
+      font-family: var(--font-display)
+      font-size: 1.15em
+      font-weight: 700
+      color: #f7f2e7
+      margin: 0 0 .1em
+      line-height: 1.2
+
+    p
+      font-size: .84em
+      color: #d6cfc0
+      margin: 0
+      line-height: 1.4
+
+.subscribe-form
+  display: flex
+  flex-wrap: nowrap
+  gap: .6em
+  align-items: center
+  flex: 0 0 auto
+  justify-content: flex-end
+
+  input[type="text"], input[type="email"]
+    font: inherit
+    font-size: .95em
+    padding: .6em .85em
+    border: 1px solid transparent
+    border-radius: 8px
+    color: #0f172a
+    background: #ffffff
+
+    &:focus
+      outline: none
+      border-color: #2563eb
+
+  input[type="text"]
+    flex: 1 1 120px
+    min-width: 110px
+
+  input[type="email"]
+    flex: 1 1 240px
+    min-width: 220px
+
+  button
+    padding: .7em 1.2em
+    border: none
+    border-radius: 9999px
+    background: #f7f2e7
+    color: #3B5240
+    font-family: var(--font-body)
+    font-size: .95em
+    font-weight: 700
+    cursor: pointer
+    transition: background .2s
+    flex: 0 0 auto
+
+    &:hover
+      background: #ffffff
+
+@media (max-width: 720px)
+  .subscribe-inline
+    flex-direction: column
+    align-items: stretch
+    gap: 1.1em
+
+  .subscribe-copy
+    flex: none
+
+  .subscribe-form
+    flex: none
+    flex-direction: column
+    align-items: stretch
+
+    input[type="text"], input[type="email"], button
+      width: 100%
+      flex: none

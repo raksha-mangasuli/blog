@@ -45,6 +45,10 @@ title: "Home"
   </nav>
   {% endif %}
 
+  {% if paginator.page == 1 %}
+    {% include subscribe.html %}
+  {% endif %}
+
 {% else %}
   {% capture source %}{% include_relative archive.html title="Posts" %}{% endcapture %}
   {{ source | split: "---" | last }}

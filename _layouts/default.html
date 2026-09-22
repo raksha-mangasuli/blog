@@ -5,7 +5,19 @@
 
 <header class="hover smooth">
   {% unless site.show_minimal and site.navigation and site.external %}
-    <h1 {% if site.navigation and site.external %}class="full"{% endif %}><a href="{{ "/" | relative_url }}">{{ site.title | escape }}</a></h1>
+    <h1 {% if site.navigation and site.external %}class="full"{% endif %}><a href="{{ "/" | relative_url }}" class="site-logo-link"><svg class="site-logo" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <circle cx="12" cy="4.2" r=".9" fill="currentColor"/>
+      <circle cx="19.8" cy="12" r=".9" fill="currentColor"/>
+      <circle cx="12" cy="19.8" r=".9" fill="currentColor"/>
+      <circle cx="4.2" cy="12" r=".9" fill="currentColor"/>
+      <circle cx="17" cy="7" r=".6" fill="currentColor" opacity=".7"/>
+      <circle cx="17" cy="17" r=".6" fill="currentColor" opacity=".7"/>
+      <circle cx="7" cy="17" r=".6" fill="currentColor" opacity=".7"/>
+      <circle cx="7" cy="7" r=".6" fill="currentColor" opacity=".7"/>
+      <path d="M12 12L12 5.2L14.3 12z" fill="currentColor"/>
+      <path d="M12 12L12 18.8L9.7 12z" fill="currentColor" opacity=".45"/>
+      <circle cx="12" cy="12" r="1.1" fill="currentColor"/>
+    </svg>{{ site.title | escape }}</a></h1>
   {% endunless %}
   {% include menu.html menu=site.navigation %}
   {% include menu.html menu=site.external %}
@@ -19,6 +31,7 @@
   {% include menu.html menu=site.footer %}
 </footer>
 {%- endif -%}
+
 
 <script>
   // Links in post content that point off-site, or to a PDF, open in a new tab so
