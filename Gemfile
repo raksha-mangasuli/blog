@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-gem "jekyll", "~> 4.4.1"
+gem "github-pages", group: :jekyll_plugins
 gem "webrick", "~> 1.9.1"
 gem 'wdm', '>= 0.1.0', platforms: [:windows]
 gem 'jekyll-paginate'
