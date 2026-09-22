@@ -38,7 +38,10 @@ header a, footer a
 footer a
   margin: .75em 0
 
-nav
+// Scoped to the header/footer menu (see _includes/menu.html) so it
+// doesn't bleed into other <nav> elements on the page, like .pager
+// (the post-list pagination bar), which sets its own spacing.
+header nav, footer nav
   margin: 0
   a
     margin: 0 1.3em
