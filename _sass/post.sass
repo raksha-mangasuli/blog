@@ -4,7 +4,7 @@
 //    1. surface widens  ~680px -> ~1060px
 //    2. constellation background is suppressed (calm)
 //    3. card chrome dissolves (subtle border, gentle radius)
-//  Text stays ~780px wide and every block shares one left edge.
+//  Text stays ~880px wide and every block shares one left edge.
 // ============================================================
 
 // 1 — calm backdrop, only on post pages (.post exists there only)
@@ -17,9 +17,9 @@
 
 // 2 — the wide surface (overrides the narrow `article` + `body > *` rules)
 body > .post
-  max-width: 840px !important
-  margin: 1.6em auto 0 !important
-  padding: 2.4em 0 2.6em !important
+  max-width: 930px !important
+  margin: 1em auto 0 !important
+  padding: 1.4em 0 2.6em !important
   background: #ffffff !important
   border: 1px solid #e2e8f0 !important
   border-radius: 14px !important
@@ -27,7 +27,7 @@ body > .post
 
 // 3 — ONE reading measure for every direct child, centred in the panel
 .post > *
-  max-width: 780px
+  max-width: 880px
   margin-left: auto !important
   margin-right: auto !important
   padding-left: 1.6em
@@ -50,14 +50,14 @@ body > .post
   font-size: .82em
   font-weight: 500
   color: #64748b !important
-  margin-bottom: 1.6em
+  margin-bottom: .9em
 
 .post > .post-back:hover
   color: #2563eb !important
 
 .post > .post-head
-  margin-bottom: 1.4em
-  padding-bottom: 1.4em
+  margin-bottom: .9em
+  padding-bottom: .9em
   border-bottom: 1px solid #e8edf4
 
 // first paragraph sits close under the divider
@@ -83,7 +83,7 @@ body > .post
   line-height: 1.22
   font-weight: 700 !important
   color: #0f172a !important
-  margin: .5em 0 0
+  margin: .05em 0 0
 
 .post-meta
   display: flex
@@ -124,7 +124,8 @@ body > .post
 
 // --- prev / next footer -------------------------------------
 body > footer.post-nav
-  max-width: 840px !important
+  max-width: 930px !important
+  width: 100% !important
   margin: 1.1em auto 3em !important
   padding: 1.2em 1.6em 0 !important
   background: transparent !important
