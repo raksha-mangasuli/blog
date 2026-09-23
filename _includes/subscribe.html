@@ -11,16 +11,25 @@
       <p>Tech tangents, hobby updates, and whatever else I'm working through, straight to your inbox when I write it.</p>
     </div>
   </div>
-  <form
-    action="https://buttondown.com/api/emails/embed-subscribe/raksha_mangasuli"
-    method="post"
-    target="popupwindow"
-    onsubmit="window.open('https://buttondown.com/raksha_mangasuli', 'popupwindow')"
-    class="subscribe-form"
-  >
-    <input type="text" name="metadata__name" placeholder="Your name" autocomplete="name" aria-label="Name">
-    <input type="email" name="email" placeholder="you@example.com" required autocomplete="email" aria-label="Email">
-    <input type="hidden" value="1" name="embed">
-    <button type="submit">Count me in</button>
-  </form>
+
+  <div id="mlb2-46261415" class="ml-form-embedContainer ml-subscribe-form ml-subscribe-form-46261415">
+    <form class="ml-block-form subscribe-form row-form" action="https://assets.mailerlite.com/jsonp/2654993/forms/199397552034940355/subscribe" data-code="" method="post" target="_blank">
+      <input type="email" name="fields[email]" placeholder="you@example.com" required autocomplete="email" aria-label="Email">
+      <input type="hidden" name="ml-submit" value="1">
+      <button type="submit">Count me in</button>
+      <input type="hidden" name="anticsrf" value="true">
+    </form>
+    <div class="row-success subscribe-success" style="display: none">
+      <p>&#127881; You're in! Check your inbox to confirm your subscription.</p>
+    </div>
+  </div>
 </section>
+
+<script>
+  function ml_webform_success_46261415() {
+    var $ = ml_jQuery || jQuery;
+    $('.ml-subscribe-form-46261415 .row-success').show();
+    $('.ml-subscribe-form-46261415 .row-form').hide();
+  }
+</script>
+<script src="https://groot.mailerlite.com/js/w/webforms.min.js?v83147fa8ce2d95cb73ece7f28b469519" type="text/javascript"></script>

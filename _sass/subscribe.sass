@@ -101,6 +101,23 @@
     &:hover
       background: #ffffff
 
+// MailerLite embed wrapper takes the place of the old bare <form>
+// in the flex row; the form and success message inside it reuse the
+// .subscribe-form input/button rules above via a shared class.
+.ml-subscribe-form-46261415
+  flex: 0 0 auto
+
+  .row-success
+    p
+      margin: 0
+      font-size: .95em
+      font-weight: 700
+      color: #3B5240
+      background: #f7f2e7
+      display: inline-block
+      padding: .45em 1.2em
+      border-radius: 9999px
+
 @media (max-width: 720px)
   .subscribe-inline
     flex-direction: column
@@ -118,3 +135,6 @@
     input[type="text"], input[type="email"], button
       width: 100%
       flex: none
+
+  .ml-subscribe-form-46261415
+    flex: none
