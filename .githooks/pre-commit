@@ -10,6 +10,8 @@
 #
 # Install once:  git config core.hooksPath .githooks
 
+sh "$(git rev-parse --show-toplevel)/scripts/fix-post-images.sh"
+
 staged=$(git diff --cached --name-only --diff-filter=AM)
 
 bad=$(printf '%s\n' "$staged" | grep -Ei '^_posts/.*\.(png|jpe?g|gif|svg|webp|heic|pdf|mp4|mov|zip)$')
