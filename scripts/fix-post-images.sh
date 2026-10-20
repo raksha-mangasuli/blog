@@ -2,6 +2,7 @@
 # Moves Obsidian-pasted images out of _posts/assets/ into assets/images/
 # (lowercase-hyphenated names) and rewrites the embeds in _posts/*.md to
 #     ![alt]({{ "/assets/images/NAME" | relative_url }})
+# Also wraps bare URLs in <...> so they render as links.
 # Run by .githooks/pre-commit, or by hand:  sh scripts/fix-post-images.sh
 
 cd "$(git rev-parse --show-toplevel)" || exit 1
@@ -28,6 +29,9 @@ for post in _posts/*.md; do
     echo "fix-post-images: rewrote embed in $post"
   done
 done
+
+# make bare URLs clickable (kramdown doesn't autolink them)
+perl scripts/autolink-post-urls.pl _posts/*.md
 
 # remove leftover empty folders and stage anything we touched
 find _posts/assets -type d -empty -delete 2>/dev/null
