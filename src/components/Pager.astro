@@ -1,0 +1,41 @@
+---
+import { url } from '../lib/posts';
+
+interface Props {
+	page: number;
+	totalPages: number;
+}
+
+const { page, totalPages } = Astro.props;
+// Jekyll URLs: /, /page2/, /page3/ ... (not /page/2/)
+const pagePath = (n: number) => (n === 1 ? url('/') : url(`/page${n}/`));
+const numbers = Array.from({ length: totalPages }, (_, i) => i + 1);
+---
+
+{
+	totalPages > 1 && (
+		<nav class="pager" aria-label="Pagination">
+			{page > 1 && (
+				<a class="pager-link" href={pagePath(page - 1)}>
+					← Newer
+				</a>
+			)}
+			{numbers.map((n) =>
+				n === page ? (
+					<span class="page-num active" aria-current="page">
+						{n}
+					</span>
+				) : (
+					<a class="page-num" href={pagePath(n)}>
+						{n}
+					</a>
+				),
+			)}
+			{page < totalPages && (
+				<a class="pager-link" href={pagePath(page + 1)}>
+					Older →
+				</a>
+			)}
+		</nav>
+	)
+}

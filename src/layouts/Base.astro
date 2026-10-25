@@ -1,0 +1,71 @@
+---
+import { SITE_TITLE, url } from '../lib/posts';
+
+interface Props {
+	title?: string;
+}
+
+const { title } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const nav = [
+	{ title: 'General', href: '/general/' },
+	{ title: 'Tech', href: '/tech/' },
+	{ title: 'Hobbies', href: '/hobbies/' },
+	{ title: 'Archive', href: '/archive/' },
+];
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>{title ? `${title} | ${SITE_TITLE}` : SITE_TITLE}</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="color-scheme" content="light dark" />
+		<meta name="author" content="Raksha Mangasuli" />
+		<meta name="generator" content={Astro.generator} />
+		<link rel="canonical" href={canonical.href} />
+		<link rel="icon" href={url('/assets/images/favicon.ico')} sizes="32x32" />
+		<link rel="icon" href={url('/assets/images/favicon.svg')} type="image/svg+xml" />
+		<link rel="apple-touch-icon" href={url('/assets/images/apple-touch-icon.png')} />
+	</head>
+	<body>
+		<header class="hover smooth">
+			<h1>
+				<a href={url('/')} class="site-logo-link"
+					><svg class="site-logo" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+						<circle cx="12" cy="4.2" r=".9" fill="currentColor"></circle>
+						<circle cx="19.8" cy="12" r=".9" fill="currentColor"></circle>
+						<circle cx="12" cy="19.8" r=".9" fill="currentColor"></circle>
+						<circle cx="4.2" cy="12" r=".9" fill="currentColor"></circle>
+						<circle cx="17" cy="7" r=".6" fill="currentColor" opacity=".7"></circle>
+						<circle cx="17" cy="17" r=".6" fill="currentColor" opacity=".7"></circle>
+						<circle cx="7" cy="17" r=".6" fill="currentColor" opacity=".7"></circle>
+						<circle cx="7" cy="7" r=".6" fill="currentColor" opacity=".7"></circle>
+						<path d="M12 12L12 5.2L14.3 12z" fill="currentColor"></path>
+						<path d="M12 12L12 18.8L9.7 12z" fill="currentColor" opacity=".45"></path>
+						<circle cx="12" cy="12" r="1.1" fill="currentColor"></circle>
+					</svg>{SITE_TITLE}</a
+				>
+			</h1>
+			<nav>
+				{nav.map((item) => <a href={url(item.href)}>{item.title}</a>)}
+			</nav>
+		</header>
+
+		<slot />
+
+		<script is:inline>
+			// Links in post content that point off-site, or to a PDF, open in a new tab so
+			// the reader keeps their place in the post. Other internal links stay in-page.
+			document.querySelectorAll('article a[href]').forEach(function (a) {
+				var offSite = /^https?:/i.test(a.protocol) && a.host !== location.host;
+				var isPdf = /\.pdf(\?|#|$)/i.test(a.getAttribute('href') || '');
+				if (offSite || isPdf) {
+					a.target = '_blank';
+					a.rel = 'noopener noreferrer';
+				}
+			});
+		</script>
+	</body>
+</html>

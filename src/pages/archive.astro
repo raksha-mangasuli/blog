@@ -1,0 +1,22 @@
+---
+import Base from '../layouts/Base.astro';
+import { formatIsoDay, getPosts, url } from '../lib/posts';
+
+const posts = await getPosts();
+---
+
+<Base title="Archive">
+	<main>
+		<header><h1>Archive</h1></header>
+		<nav class="smooth">
+			{
+				posts.map((post) => (
+					<div>
+						<time datetime={post.data.date.toISOString()}>{formatIsoDay(post.data.date)}</time>
+						<a href={url(`/${post.id}/`)}>{post.data.title}</a>
+					</div>
+				))
+			}
+		</nav>
+	</main>
+</Base>

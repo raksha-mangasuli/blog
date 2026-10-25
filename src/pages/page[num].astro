@@ -1,0 +1,25 @@
+---
+import Base from '../layouts/Base.astro';
+import PostList from '../components/PostList.astro';
+import { PAGE_SIZE, getPosts } from '../lib/posts';
+
+// Written by hand instead of Astro's paginate(), which emits /page/2/;
+// Jekyll's URLs are /page2/, /page3/.
+export async function getStaticPaths() {
+	const posts = await getPosts();
+	const totalPages = Math.ceil(posts.length / PAGE_SIZE);
+	return Array.from({ length: Math.max(totalPages - 1, 0) }, (_, i) => {
+		const page = i + 2;
+		return {
+			params: { num: String(page) },
+			props: { page, totalPages, posts: posts.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE) },
+		};
+	});
+}
+
+const { posts, page, totalPages } = Astro.props;
+---
+
+<Base title="Home">
+	<PostList posts={posts} page={page} totalPages={totalPages} />
+</Base>

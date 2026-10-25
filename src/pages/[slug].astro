@@ -1,0 +1,59 @@
+---
+import { render } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import {
+	formatDate,
+	getPosts,
+	kickerOf,
+	readingMinutes,
+	renderedHtml,
+	url,
+} from '../lib/posts';
+
+export async function getStaticPaths() {
+	const posts = await getPosts();
+	// posts is newest first, so the older neighbour is the next index
+	return posts.map((post, i) => ({
+		params: { slug: post.id },
+		props: { post, newer: posts[i - 1], older: posts[i + 1] },
+	}));
+}
+
+const { post, newer, older } = Astro.props;
+const { Content } = await render(post);
+const minutes = readingMinutes(await renderedHtml(post));
+---
+
+<Base title={post.data.title}>
+	<article class="post">
+		<a class="post-back" href={url('/')}>&larr; All posts</a>
+		<header class="post-head">
+			<span class="post-kicker">{kickerOf(post)}</span>
+			<h1>{post.data.title}</h1>
+			<div class="post-meta">
+				<time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
+				<span class="dot">&middot;</span>
+				<span>{minutes} min read</span>
+			</div>
+		</header>
+		<Content />
+	</article>
+
+	{
+		(newer || older) && (
+			<footer class="post-nav smooth">
+				{older && (
+					<a class="pn-older" href={url(`/${older.id}/`)}>
+						<span>Older</span>&laquo; {older.data.title}
+					</a>
+				)}
+				{newer && (
+					<a class="pn-newer" href={url(`/${newer.id}/`)}>
+						<span>Newer</span>
+						{newer.data.title} &raquo;
+					</a>
+				)}
+			</footer>
+		)
+	}
+</Base>

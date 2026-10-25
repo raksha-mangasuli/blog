@@ -1,0 +1,37 @@
+---
+import {
+	cardImageOf,
+	excerptOf,
+	formatDate,
+	renderedHtml,
+	url,
+	type Post,
+} from '../lib/posts';
+
+interface Props {
+	post: Post;
+	variant: 'featured' | 'small';
+}
+
+const { post, variant } = Astro.props;
+const image = await cardImageOf(post);
+const position = post.data.image_position ?? 'center';
+const excerpt = variant === 'featured' ? excerptOf(await renderedHtml(post)) : undefined;
+---
+
+<article class={`card card--${variant}`}>
+	<div class="card-media">
+		{
+			image ? (
+				<img src={image} alt="" loading="lazy" style={`object-position: ${position};`} />
+			) : (
+				<div class="card-media--empty" />
+			)
+		}
+	</div>
+	<div class="card-body">
+		<time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
+		<h2><a href={url(`/${post.id}/`)}>{post.data.title}</a></h2>
+		{excerpt !== undefined && <p class="card-excerpt">{excerpt}</p>}
+	</div>
+</article>

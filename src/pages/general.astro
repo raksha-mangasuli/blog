@@ -1,0 +1,8 @@
+---
+import CategoryPage from '../components/CategoryPage.astro';
+import { getPosts, inCategory } from '../lib/posts';
+
+const posts = inCategory(await getPosts(), 'General');
+---
+
+<CategoryPage title="General" posts={posts} />

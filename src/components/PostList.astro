@@ -1,0 +1,32 @@
+---
+import IndexCard from './IndexCard.astro';
+import Pager from './Pager.astro';
+import Subscribe from './Subscribe.astro';
+import type { Post } from '../lib/posts';
+
+interface Props {
+	posts: Post[];
+	page: number;
+	totalPages: number;
+}
+
+const { posts, page, totalPages } = Astro.props;
+// Page 1 leads with two featured cards; every other card is small.
+const featured = page === 1 ? posts.slice(0, 2) : [];
+const grid = page === 1 ? posts.slice(2) : posts;
+---
+
+{
+	featured.length > 0 && (
+		<div class="index-featured">
+			{featured.map((post) => <IndexCard post={post} variant="featured" />)}
+		</div>
+	)
+}
+<div class="index-grid">
+	{grid.map((post) => <IndexCard post={post} variant="small" />)}
+</div>
+
+<Pager page={page} totalPages={totalPages} />
+
+{page === 1 && <Subscribe />}
