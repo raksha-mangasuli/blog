@@ -10,3 +10,8 @@ _site
 # Claude Design scratch (canvas working files + seeded artifact payload)
 .design-src/
 blog-post-page-redesign.html
+
+# Astro
+node_modules/
+dist/
+.astro/
