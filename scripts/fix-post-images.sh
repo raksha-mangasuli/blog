@@ -35,5 +35,12 @@ perl scripts/autolink-post-urls.pl _posts/*.md
 
 # remove leftover empty folders and stage anything we touched
 find _posts/assets -type d -empty -delete 2>/dev/null
+
+# an asset that was staged under _posts/ and then moved above leaves a stale
+# index entry (shows as "AD"), which makes the pre-commit guard fail; drop it
+git diff --cached --name-only --diff-filter=A -- _posts | while IFS= read -r f; do
+  [ -e "$f" ] || git rm --cached -q --ignore-unmatch -- "$f"
+done
+
 git add -A assets/images _posts/*.md 2>/dev/null
 exit 0
