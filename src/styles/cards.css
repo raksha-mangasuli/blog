@@ -1,0 +1,200 @@
+/* The index pads/shadows come from `body > *`; reset them for the grids. */
+body > .index-featured,
+body > .index-grid,
+body > .pager {
+	padding-left: var(--index-gutter) !important;
+	padding-right: var(--index-gutter) !important;
+	padding-top: 0 !important;
+	padding-bottom: 0 !important;
+	box-shadow: none !important;
+	min-width: 0 !important;
+	width: 100%;
+}
+
+.index-featured {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+	align-items: stretch;
+	gap: var(--index-gap);
+	margin: var(--index-margin);
+	max-width: var(--index-width);
+	padding-top: 0;
+	padding-bottom: 0;
+	box-sizing: border-box;
+}
+
+.index-grid {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	align-items: stretch;
+	gap: var(--index-gap);
+	margin: var(--index-margin);
+	max-width: var(--index-width);
+	padding-top: 0;
+	padding-bottom: 0;
+	box-sizing: border-box;
+}
+
+/* max-width/margin !important neutralise the generic `article` rule so the
+   card fills its grid track */
+.card {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	box-sizing: border-box;
+	width: 100%;
+	max-width: none !important;
+	margin: 0 !important;
+	padding: var(--card-padding) !important;
+	background: var(--color-card);
+	border-radius: var(--radius-card);
+	box-shadow: var(--shadow-card);
+	overflow: hidden;
+}
+
+.card-media {
+	position: relative;
+	aspect-ratio: 16 / 9;
+	background: var(--color-thumb);
+	border-radius: var(--radius-thumb);
+	overflow: hidden;
+}
+
+.card-media img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center;
+	display: block;
+	margin: 0;
+	border-radius: 0;
+}
+
+.card-media::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	border-radius: inherit;
+	box-shadow: var(--shadow-thumb-edge);
+	pointer-events: none;
+}
+
+.card-media--empty {
+	width: 100%;
+	height: 100%;
+	background: var(--color-thumb-empty);
+}
+
+.card--small .card-media {
+	aspect-ratio: 3 / 2;
+	border-radius: var(--radius-thumb-small);
+}
+
+.card-body {
+	padding: var(--card-body-padding);
+}
+
+.card-body time {
+	display: block;
+	font-family: var(--font-body);
+	font-weight: 600;
+	color: var(--color-ink-2);
+}
+
+.card-body h2 {
+	margin: 0.3em 0 0;
+	font-weight: normal;
+	line-height: 1.25;
+}
+
+.card-body h2 a {
+	font-family: var(--font-display);
+	font-weight: 600;
+	color: var(--color-ink-2);
+	text-decoration: none;
+	position: static;
+}
+
+/* stretch the title link over the whole card */
+.card-body h2 a::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	z-index: 1;
+}
+
+.card:hover .card-body h2 a {
+	text-decoration: underline;
+	text-decoration-thickness: 2px;
+	text-decoration-color: var(--color-sky);
+	text-underline-offset: 3px;
+}
+
+.card--featured .card-body time,
+.card--small .card-body time {
+	font-size: var(--card-time-size);
+}
+
+.card--featured .card-body h2 a {
+	font-size: var(--card-title-size-featured);
+}
+
+.card--small .card-body h2 a {
+	font-size: var(--card-title-size-small);
+}
+
+.card-excerpt {
+	margin: 0.5em 0 0;
+	font-family: var(--font-body);
+	font-weight: 400;
+	font-size: var(--card-excerpt-size);
+	line-height: 1.55;
+	color: var(--color-ink-3);
+	text-align: left;
+	display: -webkit-box;
+	-webkit-line-clamp: var(--card-excerpt-lines);
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+/* breakpoint: 900px */
+@media (max-width: 900px) {
+	.index-grid {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+/* breakpoint: 640px */
+@media (max-width: 640px) {
+	.card {
+		padding: var(--card-padding-narrow) !important;
+	}
+
+	.index-featured {
+		grid-template-columns: minmax(0, 1fr);
+	}
+
+	.index-grid {
+		grid-template-columns: minmax(0, 1fr);
+	}
+
+	.card--small {
+		flex-direction: row;
+		align-items: center;
+		gap: 0.8em;
+	}
+
+	.card--small .card-media {
+		width: var(--card-thumb-row-size);
+		height: var(--card-thumb-row-size);
+		aspect-ratio: 1 / 1;
+		flex-shrink: 0;
+		border-radius: var(--radius-thumb);
+	}
+
+	.card--small .card-body {
+		flex: 1;
+		min-width: 0;
+		padding: 0;
+	}
+}

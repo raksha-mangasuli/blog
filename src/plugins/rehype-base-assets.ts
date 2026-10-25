@@ -31,5 +31,18 @@ export default function rehypeBaseAssets({ base = '' }: Options = {}) {
 		node.children?.forEach(walk);
 	}
 
-	return (tree: HastNode) => walk(tree);
+	// Kramdown wraps a lone block-level raw <img> in <p>; the post CSS is built
+	// around that (`.post > p`), so do the same for root-level raw <img> nodes.
+	const wrapRootImages = (tree: HastNode) => {
+		for (const node of tree.children ?? []) {
+			if (node.type === 'raw' && typeof node.value === 'string' && /^\s*<img\b/i.test(node.value)) {
+				node.value = `<p>${node.value.trim()}</p>`;
+			}
+		}
+	};
+
+	return (tree: HastNode) => {
+		walk(tree);
+		wrapRootImages(tree);
+	};
 }

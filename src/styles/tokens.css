@@ -1,0 +1,185 @@
+/*
+ * Design tokens, ported from the Jekyll theme (_sass/*, compiled to
+ * assets/css/index.css). Every color, font, size, spacing, radius and shadow
+ * the site uses lives here; component files only reference var(--...).
+ *
+ * Breakpoints (custom properties can't be used inside @media):
+ *   900px  post surface goes edge to edge, card grid 3 -> 2 columns
+ *   720px  subscribe block stacks
+ *   640px  single column, small cards turn into rows
+ */
+:root {
+	/* fonts */
+	--font-display: 'Fraunces', serif;
+	--font-body: 'DM Sans', sans-serif;
+
+	/* base type */
+	--font-size-base: 16px;
+	--line-height-base: 1.6;
+	--line-height-text: 1.7;
+	--line-height-copy: 1.75;
+
+	/* page */
+	--color-page: #fafafa;
+	--color-tile: #e3ccc9;
+	--tile-image: url('/blog/assets/images/straw-rosewood.jpg');
+	--tile-size: 420px;
+	--color-text: #333333;
+	--color-heading: #111111;
+	--color-link: #111111;
+	--color-link-hover: #555555;
+	--color-article-surface: rgba(255, 255, 255, 0.98);
+
+	/* slate ramp used for text and borders */
+	--color-ink: #0f172a;
+	--color-ink-2: #1e293b;
+	--color-ink-3: #334155;
+	--color-ink-meta: #46536b;
+	--color-slate-muted: #64748b;
+	--color-slate-faint: #94a3b8;
+	--color-slate-dot: #cbd5e1;
+	--color-slate-chip: #f1f5f9;
+	--color-slate-border: #e2e8f0;
+	--color-slate-rule: #e8edf4;
+
+	/* accents */
+	--color-blue: #2563eb;
+	--color-blue-hover: #1d4ed8;
+	--color-blue-link-underline: rgba(37, 99, 235, 0.4);
+	--color-blue-focus: #1e40af;
+	--color-sky: #93c5fd;
+	--color-thumb: #d6e5fc;
+	--color-thumb-empty: #f4eedd;
+	--color-card: #fdfefe;
+	--color-pager-active: #1f283b;
+	--color-white: #ffffff;
+	--color-bar-text: #2c2c2c;
+
+	/* misc grays (hsl(230 18% 60%) mixed 50% with gray, at various alphas) */
+	--color-gray: #848796;
+	--color-gray-12: rgba(132, 135, 150, 0.12);
+	--color-gray-22: rgba(132, 135, 150, 0.22);
+	--color-gray-24: rgba(132, 135, 150, 0.24);
+	--color-gray-60: rgba(132, 135, 150, 0.6);
+	--color-rule-shadow: rgba(33, 36, 48, 0.05);
+	--color-code-bg: #2e3142;
+	--color-code-text: #ffffff;
+
+	/* light-dark() pairs: follow the OS scheme via <meta name="color-scheme">,
+	   as in the Jekyll theme (no color-scheme property on :root) */
+	--color-page-bg: light-dark(white, #212430);
+	--color-page-text: light-dark(#0d0d12, white);
+	--color-link-base: light-dark(#4466ff, #3388ff);
+	--color-dark-link-bg: light-dark(rgba(132, 135, 150, 0.22), rgba(132, 135, 150, 0));
+	--color-quote-text: light-dark(#555555, #eeeeee);
+
+	/* header (navy bar) */
+	--color-header-bg: rgba(15, 23, 42, 0.9);
+	--color-header-text: #e2e8f0;
+	--color-header-chip: rgba(255, 255, 255, 0.1);
+	--color-header-chip-hover: rgba(255, 255, 255, 0.18);
+	--color-header-chip-outline: rgba(255, 255, 255, 0.3);
+	--color-cream: #f7f2e7;
+	--color-moss: #3b5240;
+	--header-blur: 24px;
+	--header-padding: 0.25em 2.5em;
+	--header-title-size: 1.35em;
+	--header-nav-gap: 0.45em;
+	--header-chip-margin: 0 0.4em;
+	--header-chip-padding: 0.45em 0.85em;
+	--header-stitch-height: 4px;
+
+	/* radii */
+	--radius-xs: 2px;
+	--radius-sm: 3px;
+	--radius-img: 4px;
+	--radius-pre: 5px;
+	--radius-img-post: 6px;
+	--radius-thumb-small: 8px;
+	--radius-thumb: 10px;
+	--radius-post: 14px;
+	--radius-card: 16px;
+	--radius-article: 24px;
+	--radius-pill: 9999px;
+
+	/* shadows */
+	--shadow-rule: 0 1px var(--color-gray-12), 0 1em 2em -1em var(--color-rule-shadow);
+	--shadow-card: 0 10px 30px -18px rgba(15, 23, 42, 0.35);
+	--shadow-post: 0 14px 44px -24px rgba(15, 23, 42, 0.3);
+	--shadow-thumb-edge: inset 0 0 0 1px rgba(30, 41, 59, 0.14);
+	--shadow-chip-outline: inset 0 0 0 1px var(--color-header-chip-outline);
+
+	/* spacing, flow */
+	--space-hr: 2em 0;
+	--space-block: 1.25em 0;
+	--space-img: 1.5em auto;
+	--space-li: 0.3em 0;
+	--space-pre: 1.5em 0;
+	--space-article-y: 0.4em;
+	--padding-article: 1.8em;
+	--article-width: 650px;
+	--transition-link: 0.25s;
+	--transition-fast: 0.2s;
+
+	/* body > * gutter */
+	--gutter-y: clamp(1.5em, 4vw, 1.75em);
+	--gutter-x: max(1.5em, calc(42% - 16rem));
+
+	/* index grid */
+	--index-width: 1060px;
+	--index-gap: 1.5rem;
+	--index-margin: 1.6em auto;
+	--index-gutter: 1.6em;
+	--card-padding: 14px;
+	--card-padding-narrow: 12px;
+	--card-body-padding: 12px 2px 2px;
+	--card-time-size: 0.9rem;
+	--card-title-size-featured: 1.3rem;
+	--card-title-size-small: 1.2rem;
+	--card-excerpt-size: 0.95rem;
+	--card-excerpt-lines: 3;
+	--card-thumb-row-size: 88px;
+
+	/* pager */
+	--pager-size: 38px;
+	--pager-size-narrow: 40px;
+	--pager-gap: 10px;
+	--pager-font-size: 15px;
+	--pager-link-padding: 0 20px;
+	--pager-margin: 1em auto 2.5em;
+
+	/* post page */
+	--post-width: 930px;
+	--post-measure: 880px;
+	--post-gutter: 1.6em;
+	--post-padding: 1.4em 0 2.6em;
+	--post-copy-size: 1.06em;
+	--post-copy-line-height: 1.8;
+	--post-title-size: 2.3em;
+	--post-title-line-height: 1.22;
+	--post-meta-size: 0.85em;
+	--post-back-size: 0.82em;
+	--post-kicker-size: 0.72em;
+	--post-kicker-tracking: 0.12em;
+	--post-nav-margin: 1.1em auto 3em;
+	--post-nav-padding: 1.2em 1.6em 0;
+	--post-nav-label-size: 0.7em;
+	--post-nav-label-tracking: 0.1em;
+	--post-backdrop: #e7ecf5;
+
+	/* archive list */
+	--archive-size: 1.1em;
+
+	/* subscribe block */
+	--subscribe-width: 940px;
+	--subscribe-gap: 1.6em;
+	--subscribe-margin: 2em auto 1em;
+	--subscribe-padding: 1.1em 1.6em;
+	--subscribe-dot: rgba(255, 255, 255, 0.14);
+	--subscribe-dot-size: 14px;
+	--subscribe-text: #d6cfc0;
+	--subscribe-success-bg: #fbe0eb;
+	--subscribe-form-width: 490px;
+	--subscribe-icon-size: 2em;
+	--subscribe-icon-svg: 16px;
+}

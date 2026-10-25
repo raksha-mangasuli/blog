@@ -1,0 +1,94 @@
+body > header {
+	background: var(--color-header-bg) !important;
+	backdrop-filter: blur(var(--header-blur)) !important;
+	border-bottom: none !important;
+	padding: var(--header-padding) !important;
+	position: relative;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+	color: var(--color-bar-text);
+}
+
+/* thin border stitched from alternating moss dashes and cream dots */
+body > header::after {
+	content: '';
+	position: absolute;
+	top: 100%;
+	left: 0;
+	right: 0;
+	height: var(--header-stitch-height);
+	background:
+		repeating-linear-gradient(90deg, var(--color-moss) 0 10px, transparent 10px 14px),
+		repeating-linear-gradient(90deg, transparent 0 7px, var(--color-cream) 7px 8px, transparent 8px 14px);
+}
+
+header a {
+	display: inline-block;
+}
+
+header nav {
+	margin: 0;
+	display: flex;
+	align-items: center;
+}
+
+/* each link is a chip wrapping icon and title */
+header nav a {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--header-nav-gap);
+	margin: var(--header-chip-margin) !important;
+	padding: var(--header-chip-padding);
+	border-radius: var(--radius-thumb);
+	background: var(--color-header-chip);
+	font-weight: 500;
+	color: var(--color-link);
+	transition: background var(--transition-fast), border-color var(--transition-fast);
+}
+
+header nav a:hover {
+	background: var(--color-header-chip-hover);
+}
+
+/* Archive is the "view everything" link: outlined instead of filled */
+header nav a:last-child {
+	background: transparent;
+	box-shadow: var(--shadow-chip-outline);
+}
+
+header nav a:last-child:hover {
+	background: var(--color-header-chip);
+}
+
+header nav svg {
+	width: 1em;
+	height: 1em;
+	font-size: 1em;
+	vertical-align: 0;
+}
+
+header h1,
+nav a {
+	color: var(--color-header-text) !important;
+	font-weight: 600 !important;
+}
+
+header h1 {
+	font-size: var(--header-title-size) !important;
+	font-family: var(--font-display);
+	font-weight: 700 !important;
+	color: var(--color-cream) !important;
+}
+
+header h1 .site-logo-link {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5em;
+}
+
+header h1 .site-logo {
+	flex-shrink: 0;
+	color: var(--color-cream);
+}

@@ -1,0 +1,15 @@
+/* Shared bar rules from layout.sass. The only footer on the site is the post
+   prev/next bar; post.css overrides its box, this supplies the flex alignment
+   and link spacing. */
+body > footer {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+	color: var(--color-bar-text);
+}
+
+footer a {
+	display: inline-block;
+	margin: 0.75em 0;
+}

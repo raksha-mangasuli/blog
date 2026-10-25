@@ -1,0 +1,74 @@
+/* .page-num / .pager-link set color with !important because they sit inside
+   a <nav>, and `nav a { color: ... !important }` in header.css would win */
+.pager {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	gap: var(--pager-gap);
+	max-width: var(--index-width);
+	margin: var(--pager-margin);
+	padding: 0 var(--index-gutter);
+	box-sizing: border-box;
+	font-family: var(--font-body);
+}
+
+.page-num {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: var(--pager-size);
+	height: var(--pager-size);
+	border-radius: var(--radius-pill);
+	font-weight: 600 !important;
+	font-size: var(--pager-font-size);
+	color: var(--color-ink-2) !important;
+	background: var(--color-card);
+	border: none;
+	text-decoration: none;
+}
+
+.page-num:hover {
+	background: var(--color-thumb);
+}
+
+.page-num:focus-visible {
+	outline: 2px solid var(--color-blue-focus);
+	outline-offset: 2px;
+}
+
+.page-num.active {
+	background: var(--color-pager-active);
+	color: #fff !important;
+}
+
+.pager-link {
+	display: inline-flex;
+	align-items: center;
+	height: var(--pager-size);
+	padding: var(--pager-link-padding);
+	border-radius: var(--radius-pill);
+	font-weight: 600 !important;
+	font-size: var(--pager-font-size);
+	color: var(--color-ink-2) !important;
+	background: var(--color-card);
+	border: none;
+	text-decoration: none;
+}
+
+.pager-link:hover {
+	background: var(--color-thumb);
+}
+
+.pager-link:focus-visible {
+	outline: 2px solid var(--color-blue-focus);
+	outline-offset: 2px;
+}
+
+/* breakpoint: 640px */
+@media (max-width: 640px) {
+	.page-num {
+		width: var(--pager-size-narrow);
+		height: var(--pager-size-narrow);
+	}
+}

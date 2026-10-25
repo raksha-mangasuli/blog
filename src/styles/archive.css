@@ -1,0 +1,20 @@
+main nav {
+	font-size: var(--archive-size);
+	margin: 1.4em 0;
+	color: var(--color-ink-2);
+}
+
+main nav div {
+	margin: 0.5em 0;
+}
+
+main nav time {
+	color: var(--color-ink-meta);
+	margin-right: 0.6em;
+	font-variant-numeric: tabular-nums;
+}
+
+main nav a {
+	color: var(--color-ink-2) !important;
+	font-weight: 600 !important;
+}

@@ -1,0 +1,177 @@
+/* Horizontal banner: icon + copy on the left, form on the right. */
+.subscribe-inline {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--subscribe-gap);
+	max-width: var(--subscribe-width);
+	margin: var(--subscribe-margin);
+	padding: var(--subscribe-padding);
+	background-color: var(--color-moss);
+	background-image: radial-gradient(var(--subscribe-dot) 1px, transparent 1px);
+	background-size: var(--subscribe-dot-size) var(--subscribe-dot-size);
+	border-radius: var(--radius-card);
+	text-align: left;
+}
+
+.subscribe-copy {
+	display: flex;
+	align-items: center;
+	gap: 0.8em;
+	flex: 1 1 auto;
+	min-width: 0;
+}
+
+.subscribe-copy .subscribe-icon {
+	width: var(--subscribe-icon-size);
+	height: var(--subscribe-icon-size);
+	flex-shrink: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 50%;
+	background: var(--subscribe-dot);
+	color: var(--color-cream);
+	overflow: hidden;
+}
+
+.subscribe-copy .subscribe-icon svg {
+	display: block;
+	width: var(--subscribe-icon-svg);
+	height: var(--subscribe-icon-svg);
+}
+
+.subscribe-copy .subscribe-text {
+	min-width: 0;
+	max-width: 430px;
+}
+
+.subscribe-copy .subscribe-text h2 {
+	font-family: var(--font-display);
+	font-size: 1.15em;
+	font-weight: 700;
+	color: var(--color-cream);
+	margin: 0 0 0.1em;
+	line-height: 1.2;
+}
+
+.subscribe-copy .subscribe-text p {
+	font-size: 0.84em;
+	color: var(--subscribe-text);
+	margin: 0;
+	line-height: 1.4;
+}
+
+.subscribe-form {
+	display: flex;
+	flex-wrap: nowrap;
+	gap: 0.6em;
+	align-items: center;
+	flex: 0 0 auto;
+	justify-content: flex-end;
+}
+
+.subscribe-form input[type='text'],
+.subscribe-form input[type='email'] {
+	font: inherit;
+	font-size: 0.95em;
+	padding: 0.6em 0.85em;
+	border: 1px solid transparent;
+	border-radius: 8px;
+	color: var(--color-ink);
+	background: var(--color-white);
+}
+
+.subscribe-form input[type='text']:focus,
+.subscribe-form input[type='email']:focus {
+	outline: none;
+	border-color: var(--color-blue);
+}
+
+.subscribe-form input[type='text'] {
+	flex: 1 1 120px;
+	min-width: 110px;
+}
+
+.subscribe-form input[type='email'] {
+	flex: 1 1 260px;
+	min-width: 260px;
+}
+
+.subscribe-form button {
+	padding: 0.7em 1.2em;
+	border: none;
+	border-radius: var(--radius-pill);
+	background: var(--color-cream);
+	color: var(--color-moss);
+	font-family: var(--font-body);
+	font-size: 0.95em;
+	font-weight: 700;
+	cursor: pointer;
+	transition: background var(--transition-fast);
+	flex: 0 0 auto;
+}
+
+.subscribe-form button:hover {
+	background: var(--color-white);
+}
+
+/* MailerLite embed wrapper sits in the flex row in place of a bare form */
+.ml-subscribe-form-46261415 {
+	flex: 0 0 auto;
+	width: var(--subscribe-form-width);
+	display: flex;
+	justify-content: flex-end;
+}
+
+.ml-subscribe-form-46261415 .row-form {
+	flex: 1 1 auto;
+}
+
+.ml-subscribe-form-46261415 .row-success {
+	display: flex;
+	justify-content: flex-end;
+	width: 100%;
+}
+
+.ml-subscribe-form-46261415 .row-success p {
+	margin: 0;
+	font-size: 0.95em;
+	font-weight: 700;
+	color: var(--color-moss);
+	background: var(--subscribe-success-bg);
+	display: inline-block;
+	padding: 0.45em 1.2em;
+	border-radius: var(--radius-pill);
+}
+
+/* breakpoint: 720px */
+@media (max-width: 720px) {
+	.subscribe-inline {
+		flex-direction: column;
+		align-items: stretch;
+		gap: 1.1em;
+	}
+
+	.subscribe-copy {
+		flex: none;
+	}
+
+	.subscribe-form {
+		flex: none;
+		flex-direction: column;
+		align-items: stretch;
+	}
+
+	.subscribe-form input[type='text'],
+	.subscribe-form input[type='email'],
+	.subscribe-form button {
+		width: 100%;
+		flex: none;
+	}
+
+	.ml-subscribe-form-46261415 {
+		flex: none;
+		width: 100%;
+	}
+}

@@ -1,0 +1,255 @@
+/* Superseded further down (tiled background, #333 text, #111 links), kept in
+   the same order as the Jekyll cascade so dark mode behaves the same. */
+body {
+	background: var(--color-page-bg);
+	color: var(--color-page-text);
+}
+
+a {
+	color: var(--color-link-base);
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	margin: 0;
+	box-sizing: border-box;
+	-webkit-text-size-adjust: 100%;
+	line-height: var(--line-height-base);
+	font-size: var(--font-size-base);
+	color: var(--color-text);
+	background-color: var(--color-tile);
+	background-image: var(--tile-image);
+	background-repeat: repeat;
+	background-size: var(--tile-size);
+}
+
+* {
+	font-family: var(--font-body);
+	box-sizing: border-box;
+}
+
+a {
+	color: var(--color-link);
+	transition: var(--transition-link);
+	box-shadow: 0 2px transparent;
+	text-decoration: none;
+	text-decoration-color: transparent;
+}
+
+a:hover {
+	color: var(--color-link-hover);
+}
+
+header a,
+footer a,
+nav a {
+	font-weight: bold;
+}
+
+header a,
+footer a,
+nav a:not(:hover) {
+	color: inherit;
+}
+
+article a:hover {
+	text-decoration-color: inherit;
+}
+
+body > header a:hover,
+body > footer a:hover {
+	box-shadow: 0 2px;
+}
+
+hr {
+	border: 1px solid var(--color-gray);
+	margin: var(--space-hr);
+}
+
+blockquote {
+	background: var(--color-gray-12);
+	color: var(--color-quote-text);
+	border-left: 3px solid var(--color-gray-60);
+	padding: 1px 1.5em;
+}
+
+blockquote,
+figure {
+	margin: var(--space-block);
+}
+
+img {
+	display: block;
+	margin: var(--space-img);
+	border-radius: var(--radius-img);
+	max-width: 100%;
+	height: auto;
+}
+
+li {
+	margin: var(--space-li);
+}
+
+table {
+	display: inline-block;
+	max-width: 100%;
+	overflow-y: auto;
+	border-collapse: collapse;
+	border-radius: var(--radius-xs);
+}
+
+th,
+td {
+	padding: 0.5em 1em;
+	border: 1px solid var(--color-gray-24);
+}
+
+thead,
+tr:hover {
+	background: var(--color-gray-12);
+}
+
+pre {
+	font-size: 0.8em;
+	background: var(--color-code-bg);
+	color: var(--color-code-text);
+	border-radius: var(--radius-pre);
+	margin: var(--space-pre);
+	padding: 0.8em 1.2em;
+	overflow-x: auto;
+}
+
+code:not(pre code) {
+	font-size: 0.9em;
+	background: var(--color-gray-22);
+	border-radius: var(--radius-sm);
+	margin: 0 0.1em;
+	padding: 0.2em 0.4em;
+	opacity: 0.75;
+}
+
+header time,
+nav time {
+	color: var(--color-gray);
+}
+
+h1,
+h2,
+h3 {
+	font-weight: 700;
+	color: var(--color-heading);
+}
+
+h1,
+h2,
+h3,
+article h2 {
+	font-family: var(--font-display);
+	font-weight: 700;
+}
+
+nav,
+body,
+p,
+a {
+	font-family: var(--font-body);
+}
+
+/* a linked post title keeps the display heading font, scoped to article so
+   the site masthead <h1><a> stays on the body font */
+article h1 a,
+article h2 a,
+article h3 a {
+	font-family: var(--font-display);
+}
+
+p {
+	font-weight: 300;
+	line-height: var(--line-height-text);
+}
+
+/* inline links in post body and lists: calm blue, gentle underline */
+article p a,
+article li a {
+	color: var(--color-blue) !important;
+	font-weight: 400;
+	text-decoration: underline;
+	text-decoration-color: var(--color-blue-link-underline);
+	text-underline-offset: 3px;
+	text-decoration-thickness: 1px;
+	transition: color var(--transition-fast), text-decoration-color var(--transition-fast);
+}
+
+article p a:hover,
+article li a:hover {
+	color: var(--color-blue-hover) !important;
+	text-decoration-color: currentColor;
+}
+
+article {
+	max-width: var(--article-width) !important;
+	margin: 1.2em auto !important;
+	margin-top: var(--space-article-y) !important;
+	margin-bottom: var(--space-article-y) !important;
+	padding: var(--padding-article) !important;
+	background: var(--color-article-surface) !important;
+	border-radius: var(--radius-article);
+}
+
+article time {
+	margin-top: 0 !important;
+	margin-bottom: 0.3em !important;
+}
+
+article time,
+article h2 {
+	color: var(--color-ink-2) !important;
+	font-weight: 700 !important;
+}
+
+article p,
+article li {
+	color: var(--color-ink-3) !important;
+	line-height: var(--line-height-copy);
+}
+
+article * {
+	color: var(--color-ink-2) !important;
+}
+
+article,
+main {
+	flex-grow: 1;
+}
+
+.smooth {
+	-webkit-font-smoothing: antialiased;
+}
+
+.dark a {
+	font-weight: inherit;
+	border-radius: 5px;
+	background: var(--color-dark-link-bg);
+	margin: 0;
+	padding: 0.4em 0.8em;
+}
+
+.dark a:hover {
+	background: white;
+	color: black;
+	box-shadow: none;
+}
+
+.hover nav:has(svg) a:hover {
+	color: var(--color-gray);
+	box-shadow: none;
+}
+
+/* every direct child of body gets the page gutter and a faint rule */
+body > * {
+	padding: 1.75em calc(42% - 16rem);
+	padding: var(--gutter-y) var(--gutter-x);
+	box-shadow: var(--shadow-rule);
+}

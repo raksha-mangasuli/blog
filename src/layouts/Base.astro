@@ -1,4 +1,15 @@
 ---
+import '../styles/tokens.css';
+import '../styles/fonts.css';
+import '../styles/base.css';
+import '../styles/header.css';
+import '../styles/footer.css';
+import '../styles/archive.css';
+import '../styles/post.css';
+import '../styles/cards.css';
+import '../styles/pager.css';
+import '../styles/subscribe.css';
+import Icon from '../components/Icon.astro';
 import { SITE_TITLE, url } from '../lib/posts';
 
 interface Props {
@@ -8,10 +19,10 @@ interface Props {
 const { title } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const nav = [
-	{ title: 'General', href: '/general/' },
-	{ title: 'Tech', href: '/tech/' },
-	{ title: 'Hobbies', href: '/hobbies/' },
-	{ title: 'Archive', href: '/archive/' },
+	{ title: 'General', href: '/general/', icon: 'compass' },
+	{ title: 'Tech', href: '/tech/', icon: 'laptop-code' },
+	{ title: 'Hobbies', href: '/hobbies/', icon: 'bicycle' },
+	{ title: 'Archive', href: '/archive/', icon: 'archive' },
 ];
 ---
 
@@ -28,6 +39,23 @@ const nav = [
 		<link rel="icon" href={url('/assets/images/favicon.ico')} sizes="32x32" />
 		<link rel="icon" href={url('/assets/images/favicon.svg')} type="image/svg+xml" />
 		<link rel="apple-touch-icon" href={url('/assets/images/apple-touch-icon.png')} />
+		<script is:inline>
+			// Dark/light toggle (ported from assets/js/toggle-color.js). Re-applies a
+			// stored choice on load; call toggle() to flip and remember it.
+			function toggleColor() {
+				var meta = document.querySelector('meta[name=color-scheme]');
+				var dark = meta.getAttribute('content') == 'light dark' ? matchMedia('(prefers-color-scheme: light)').matches : meta.getAttribute('content') == 'light';
+				meta.setAttribute('content', dark ? 'dark' : 'light');
+			}
+
+			function toggle() {
+				if (localStorage.getItem('toggle')) localStorage.removeItem('toggle');
+				else localStorage.setItem('toggle', 1);
+				toggleColor();
+			}
+
+			if (localStorage.getItem('toggle')) toggleColor();
+		</script>
 	</head>
 	<body>
 		<header class="hover smooth">
@@ -49,7 +77,14 @@ const nav = [
 				>
 			</h1>
 			<nav>
-				{nav.map((item) => <a href={url(item.href)}>{item.title}</a>)}
+				{
+					nav.map((item) => (
+						<a href={url(item.href)}>
+							<Icon name={item.icon} label={item.title} />
+							{item.title}
+						</a>
+					))
+				}
 			</nav>
 		</header>
 
