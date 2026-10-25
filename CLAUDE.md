@@ -8,7 +8,7 @@ This is Raksha's personal blog, a Jekyll site hosted on GitHub Pages at raksha-m
 
 - Jekyll (Ruby), theme: type-on-strap
 - jekyll-admin gem for local post writing UI
-- Deployed via GitHub Pages, source branch is main
+- Deployed via GitHub Pages, source branch is master
 - Categories: General, Tech, Hobbies (matches the site's nav)
 
 ## Known jekyll-admin quirks
