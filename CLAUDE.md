@@ -31,4 +31,9 @@ Raksha's personal blog, "Timestamped Thoughts", at raksha-mangasuli.github.io/bl
 
 ## Writing posts
 
-_To be filled in later._
+- Posts are written in Obsidian. The vault is `src/content/posts`.
+- Obsidian settings: attachments folder `images`, wikilinks off (use Markdown links), new link format "relative path to file".
+- A new post is a single `.md` file in the vault root, with `title`, `date` and `categories` front matter (see `_templates/_template.md`).
+- Pasted images land in `src/content/posts/images`. Obsidian's embed `![](images/Pasted%20image%20....png)` works as is and is optimized at build time, so no path fixing.
+- Old posts keep their `/assets/images/...` paths in `public/`. Do not touch them.
+- The Jekyll-era scripts and pre-commit hook live in `legacy-jekyll/` and are unused.

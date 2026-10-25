@@ -34,20 +34,16 @@ See [POST-FORMATTING.md](POST-FORMATTING.md) for the full formatting cheat sheet
 
 ### Writing in Obsidian
 
-Posts are drafted in Obsidian, with the vault root pointed at `_posts/`. `_config.yml` sets `kramdown: hard_wrap: true` specifically so single newlines render as line breaks, matching how Obsidian writes paragraphs. If posts start rendering with run-together lines, check that setting is still there and restart the Jekyll server.
-
-Images pasted in Obsidian need a manual fix before they'll publish, since Obsidian and Jekyll disagree on paths:
-
-1. Obsidian saves the image to `_posts/assets/images/`. Jekyll skips `_`-prefixed folders, so it never gets published.
-2. Obsidian writes the embed as `![](assets/images/NAME.ext)`, a vault-relative path that won't resolve on the built site.
-
-Fix for each new image: move it to `assets/images/NAME.ext` at the repo root, then rewrite the embed to `{{ "/assets/images/NAME" | relative_url }}` per the Assets section below.
+- The Obsidian vault is `src/content/posts`.
+- Obsidian settings: attachments folder `images`, wikilinks off (Markdown links), new link format "relative path to file".
+- A new post is a single `.md` file in the vault root. Use the template in `_templates/` for the front matter (`title`, `date`, `categories`).
+- Pasted images are saved to `src/content/posts/images`. The embed Obsidian writes, `![](images/Pasted%20image%20....png)`, works as is and is optimized at build time.
+- Old posts that use `/assets/images/...` (files in `public/assets/images/`) keep working unchanged.
+- The old Jekyll image-fixing scripts and pre-commit hook are kept in `legacy-jekyll/` for reference only.
 
 ### Assets (images, PDFs)
 
 All images and PDFs go in `assets/images/`, referenced as `{{ "/assets/images/NAME" | relative_url }}`. Nothing goes under `_posts/`: Jekyll skips `_`-prefixed folders, so it 404s live even though it works locally.
-
-Run `git config core.hooksPath .githooks` once per clone. A pre-commit hook blocks asset files accidentally staged under `_posts/`.
 
 ## Restarting after config changes
 

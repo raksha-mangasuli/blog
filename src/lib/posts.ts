@@ -1,4 +1,5 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
+import { getImage } from 'astro:assets';
 import { createMarkdownProcessor } from '@astrojs/markdown-remark';
 import { markdownOptions } from '../plugins/markdown-options.ts';
 
@@ -87,11 +88,27 @@ export function firstImageOf(html: string): string | undefined {
 	return html.match(/<img\s[^>]*?src="([^"]*)"/)?.[1];
 }
 
+// Vault-local images (Obsidian's `images/` folder). renderedHtml() uses a standalone
+// markdown processor that leaves these paths unresolved, so the card optimizes them here
+// the same way the post page does.
+const vaultImages = import.meta.glob<{ default: ImageMetadata }>(
+	'/src/content/posts/**/*.{png,jpg,jpeg,gif,webp,avif,svg}',
+);
+
+async function resolveVaultImage(src: string): Promise<string | undefined> {
+	const path = decodeURIComponent(src).replace(/^\.\//, '');
+	const load = vaultImages[`/src/content/posts/${path}`];
+	if (!load) return undefined;
+	return (await getImage({ src: (await load()).default, width: 800 })).src;
+}
+
 /** Card thumbnail: `image:` override, else first body image, else none. */
 export async function cardImageOf(post: Post): Promise<string | undefined> {
 	if (post.data.image === false) return undefined;
 	if (post.data.image) return url(post.data.image);
-	return firstImageOf(await renderedHtml(post));
+	const src = firstImageOf(await renderedHtml(post));
+	if (src && !/^(\/|[a-z][a-z0-9+.-]*:)/i.test(src)) return (await resolveVaultImage(src)) ?? src;
+	return src;
 }
 
 /** content | number_of_words | divided_by: 200 | plus: 1 */
