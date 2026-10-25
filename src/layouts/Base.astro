@@ -23,7 +23,7 @@ const nav = [
 	{ title: 'Tech', href: '/tech/', icon: 'laptop-code' },
 	{ title: 'Hobbies', href: '/hobbies/', icon: 'bicycle' },
 	{ title: 'Archive', href: '/archive/', icon: 'archive' },
-];
+] as const;
 ---
 
 <!doctype html>
@@ -36,6 +36,7 @@ const nav = [
 		<meta name="author" content="Raksha Mangasuli" />
 		<meta name="generator" content={Astro.generator} />
 		<link rel="canonical" href={canonical.href} />
+		<link rel="alternate" type="application/rss+xml" title="Timestamped Thoughts" href={url('/feed.xml')} />
 		<link rel="icon" href={url('/assets/images/favicon.ico')} sizes="32x32" />
 		<link rel="icon" href={url('/assets/images/favicon.svg')} type="image/svg+xml" />
 		<link rel="apple-touch-icon" href={url('/assets/images/apple-touch-icon.png')} />

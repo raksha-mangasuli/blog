@@ -97,3 +97,13 @@ export async function cardImageOf(post: Post): Promise<string | undefined> {
 /** content | number_of_words | divided_by: 200 | plus: 1 */
 export const readingMinutes = (html: string) =>
 	Math.floor(html.split(/\s+/).filter(Boolean).length / 200) + 1;
+
+/** Plain-text feed excerpt: text before <!--more-->, else the first paragraph. */
+export async function rssExcerptOf(post: Post): Promise<string> {
+	const body = post.body ?? '';
+	const marker = body.indexOf('<!--more-->');
+	const source = marker >= 0 ? body.slice(0, marker) : body.trim().split(/\n\s*\n/)[0];
+	renderer ??= createMarkdownProcessor(markdownOptions as any);
+	const html = (await (await renderer).render(source)).code;
+	return excerptOf(html, Infinity);
+}
